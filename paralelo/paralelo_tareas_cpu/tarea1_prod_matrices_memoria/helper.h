@@ -5,7 +5,7 @@
 	#define N 4
 	#define SM 2
 #else
-	#define N 1000
+	#define N 1200
 	#define SM (CLS / sizeof(double) < N ? CLS / sizeof(double) : N)
 #endif // DEBUG
 
