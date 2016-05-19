@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<PerformanceReport>
+  <ModuleSummary>
+    <Module Name="tarea1_prod_matrices_memoria.exe" NumCalls="12,070" InclusiveElapsedTimePercent="100.00" ExclusiveElapsedTimePercent="92.16" AvgInclusiveElapsedTime="16,883.68" AvgExclusiveElapsedTime="1.29" />
+    <Module Name="MSVCR110.dll" NumCalls="18,037" InclusiveElapsedTimePercent="7.78" ExclusiveElapsedTimePercent="7.78" AvgInclusiveElapsedTime="0.07" AvgExclusiveElapsedTime="0.07" />
+    <Module Name="MSVCP110.dll" NumCalls="85" InclusiveElapsedTimePercent="0.06" ExclusiveElapsedTimePercent="0.06" AvgInclusiveElapsedTime="0.11" AvgExclusiveElapsedTime="0.11" />
+    <Module Name="ntdll.dll" NumCalls="5" InclusiveElapsedTimePercent="0.00" ExclusiveElapsedTimePercent="0.00" AvgInclusiveElapsedTime="0.00" AvgExclusiveElapsedTime="0.00" />
+    <Module Name="kernel32.dll" NumCalls="5" InclusiveElapsedTimePercent="0.00" ExclusiveElapsedTimePercent="0.00" AvgInclusiveElapsedTime="0.00" AvgExclusiveElapsedTime="0.00" />
+  </ModuleSummary>
+</PerformanceReport>

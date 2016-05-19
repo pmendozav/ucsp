@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<PerformanceReport>
+  <ThreadSummary>
+    <Thread UPID="0" PID="5592" UTID="0" TID="5440" ThreadName="Unnamed thread" ThreadBeginTime="179.12" ThreadEndTime="17,063.57" ThreadStartAddress="0" LifeTime="16,884.45" />
+  </ThreadSummary>
+</PerformanceReport>

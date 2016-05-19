@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<PerformanceReport>
+  <HeaderSummary>
+    <Header HeaderName="Is Allocation" HeaderCategory="Collection" HeaderValue="False" />
+    <Header HeaderName="Is Sampling" HeaderCategory="Collection" HeaderValue="False" />
+    <Header HeaderName="Is Concurrency" HeaderCategory="Collection" HeaderValue="False" />
+    <Header HeaderName="Is Resource Contention" HeaderCategory="Collection" HeaderValue="False" />
+    <Header HeaderName="Is Visualizer" HeaderCategory="Collection" HeaderValue="False" />
+    <Header HeaderName="Is Instrumentation" HeaderCategory="Collection" HeaderValue="True" />
+    <Header HeaderName="Is 64 Bit" HeaderCategory="Collection" HeaderValue="True" />
+    <Header HeaderName="Is Managed" HeaderCategory="Collection" HeaderValue="False" />
+    <Header HeaderName="Is Lifetime" HeaderCategory="Collection" HeaderValue="False" />
+    <Header HeaderName="Is Unsupported CLR" HeaderCategory="Collection" HeaderValue="False" />
+    <Header HeaderName="Is DHP Happened" HeaderCategory="Collection" HeaderValue="False" />
+    <Header HeaderName="Is UMS Application Terminated" HeaderCategory="Collection" HeaderValue="False" />
+    <Header HeaderName="Is TIP" HeaderCategory="Collection" HeaderValue="False" />
+    <Header HeaderName="Is JScript" HeaderCategory="Collection" HeaderValue="False" />
+    <Header HeaderName="Is Graceful Exit" HeaderCategory="Collection" HeaderValue="True" />
+    <Header HeaderName="ETL File Signature" HeaderCategory="ETW" HeaderValue="00000000-0000-0000-0000-000000000000" />
+    <Header HeaderName="Application ETL File" HeaderCategory="ETW" HeaderValue="" />
+    <Header HeaderName="Kernel ETL File" HeaderCategory="ETW" HeaderValue="" />
+    <Header HeaderName="I/O Buffers" HeaderCategory="General" HeaderValue="514" />
+    <Header HeaderName="Creation Time" HeaderCategory="General" HeaderValue="5/18/2016 6:49:02 PM" />
+    <Header HeaderName="Size of Buffers" HeaderCategory="General" HeaderValue="65536" />
+    <Header HeaderName="Machine Name" HeaderCategory="Machine Information" HeaderValue="PAVEL-PC" />
+    <Header HeaderName="Operating System Build Number" HeaderCategory="Machine Information" HeaderValue="7601" />
+    <Header HeaderName="Operating System Minor Version" HeaderCategory="Machine Information" HeaderValue="1" />
+    <Header HeaderName="Number of CPUs" HeaderCategory="Machine Information" HeaderValue="4" />
+    <Header HeaderName="Clock Frequency" HeaderCategory="Machine Information" HeaderValue="2266" />
+    <Header HeaderName="CPU Stepping" HeaderCategory="Machine Information" HeaderValue="2" />
+    <Header HeaderName="CPU Model" HeaderCategory="Machine Information" HeaderValue="5" />
+    <Header HeaderName="CPU Type" HeaderCategory="Machine Information" HeaderValue="Intel" />
+    <Header HeaderName="CPU Family" HeaderCategory="Machine Information" HeaderValue="6" />
+    <Header HeaderName="CPU Architecture" HeaderCategory="Machine Information" HeaderValue="Unknown" />
+    <Header HeaderName="Operating System Major Version" HeaderCategory="Machine Information" HeaderValue="6" />
+    <Header HeaderName="Counter 0" HeaderCategory="Performance Counters" HeaderValue="TimeStamp Counter" />
+    <Header HeaderName="Maximum Processes" HeaderCategory="Process" HeaderValue="64" />
+    <Header HeaderName="Process Highwater" HeaderCategory="Process" HeaderValue="1" />
+    <Header HeaderName="Total Processes" HeaderCategory="Process" HeaderValue="1" />
+    <Header HeaderName="Number of Processes" HeaderCategory="Process" HeaderValue="0" />
+    <Header HeaderName="Thread Highwater" HeaderCategory="Thread" HeaderValue="1" />
+    <Header HeaderName="Number of Threads" HeaderCategory="Thread" HeaderValue="0" />
+    <Header HeaderName="Maximum Threads" HeaderCategory="Thread" HeaderValue="512" />
+    <Header HeaderName="Total Threads" HeaderCategory="Thread" HeaderValue="1" />
+    <Header HeaderName="Version String" HeaderCategory="Version Information" HeaderValue="11.0.50727 x64" />
+    <Header HeaderName="Build Number" HeaderCategory="Version Information" HeaderValue="50727" />
+    <Header HeaderName="Minor Product Version" HeaderCategory="Version Information" HeaderValue="0" />
+    <Header HeaderName="Major Product Version" HeaderCategory="Version Information" HeaderValue="11" />
+    <Header HeaderName="Minor File Version" HeaderCategory="Version Information" HeaderValue="1" />
+    <Header HeaderName="Major File Version" HeaderCategory="Version Information" HeaderValue="43" />
+  </HeaderSummary>
+</PerformanceReport>

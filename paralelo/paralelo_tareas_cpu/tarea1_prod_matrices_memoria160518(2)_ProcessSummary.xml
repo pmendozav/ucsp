@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<PerformanceReport>
+  <ProcessSummary>
+    <Process UPID="0" PID="5592" ProcessName="tarea1_prod_matrices_memoria.exe" ProcBeginTime="178.98" ProcEndTime="17,063.71" LifeTime="16,884.73" />
+  </ProcessSummary>
+</PerformanceReport>

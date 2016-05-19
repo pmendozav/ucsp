@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<PerformanceReport>
+  <ProcessThreadSummary>
+    <ProcessThread ProcessThreadType="Process" UID="0" ID="5592" ProcThreadName="tarea1_prod_matrices_memoria.exe" BeginTime="178.98" EndTime="17,063.71" LifeTime="16,884.73" />
+    <ProcessThread ProcessThreadType="Thread" UID="0" ID="5440" ProcThreadName="Unnamed thread" BeginTime="179.12" EndTime="17,063.57" LifeTime="16,884.45" />
+  </ProcessThreadSummary>
+</PerformanceReport>

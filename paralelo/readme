@@ -1,0 +1,9 @@
+paralelo_tareas_cpu: proyecto en VS-C++2012 con todas las tareas del curso
+pruebas_linux: algunas funciones probadas en linux. Estas estan incluidas del del proyecto de VS.
+
+-Tarea 1:
+*paralelo_tareas_cpu/tarea1_ninja_gap: pruebas de "Can Traditional Programming Bridge the Ninja Performance Gap for Parallel Computing Applications?"
+
+*paralelo_tareas_cpu/tarea1_prod_matrices_memoria: pruebas de "What Every Programmer Should Know About Memory"
+
+*pruebas_linux/tarea1_matrices/*: archivos usados para el profiling de "tarea1_prod_matrices_memoria"
