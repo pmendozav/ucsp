@@ -1,3 +1,10 @@
+#define echo(a) cout << #a << "=" << a << endl;
+
+void pause(std::string msg = "")
+{
+	std::cout << msg.c_str() << std::endl;
+	getchar();
+}
 
 void printMat(const vector<vector<int>> &m, std::string s = "Mat")
 {
@@ -37,4 +44,23 @@ void printVec(const vector<Tour *> &v, std::string s = "Vec")
 	}
 	std::cout << std::endl << "----------" << std::endl;
 }
+void mostrar_path (Tour* tour) {
+  for (int i = 0; i < tour->visited.size(); i++) {
+    cout << tour->visited[i] << " ";
+  }
+  cout << endl;
+  cout << "Cost = " << tour->cost << endl;
 
+}
+Tour *Clone(Tour *in)
+{
+	Tour *out = new Tour;
+
+	out->cost = in->cost;
+	out->visited.resize(in->visited.size());
+
+	for (int i = 0; i < in->visited.size(); i++)
+		out->visited[i] = in->visited[i];
+
+	return out;
+}

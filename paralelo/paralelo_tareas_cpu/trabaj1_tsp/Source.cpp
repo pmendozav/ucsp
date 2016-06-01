@@ -35,8 +35,13 @@ bool IsFeasible(Tour *t, vector<vector<int>> G, int from, int to)
 }
 void RemoveLastCity(Tour *t,int city, const int &cost)
 {
-	t->visited.erase(t->visited.begin() + t->visited.size() - 1);
+	//t->visited.erase(t->visited.begin() + t->visited.size() - 1);
+
+	vector<int> asd(t->visited.begin(), t->visited.end() - 1);
+
+	t->visited = asd;;
 	t->cost -= cost;
+
 }
 
 void Initialize(int &num_cities, vector<vector<int>> &G)
@@ -142,6 +147,7 @@ void dfs_serial_v2(Tour *tour, Tour *best_tour, int num_cities, vector<vector<in
 			if(cur_tour->cost + cost < best_tour->cost)
 			{
 				*best_tour = *cur_tour;
+				//best_tour = Clone(cur_tour);
 				best_tour->cost += cost;
 				best_tour->visited.push_back(0);
 			}
@@ -157,6 +163,7 @@ void dfs_serial_v2(Tour *tour, Tour *best_tour, int num_cities, vector<vector<in
 					
 					Tour *new_tour = new Tour;
 					*new_tour = *cur_tour;
+					//new_tour = Clone(cur_tour);
 					s.push(new_tour);
 					RemoveLastCity(cur_tour, next_city, cost);
 				}
@@ -167,8 +174,7 @@ void dfs_serial_v2(Tour *tour, Tour *best_tour, int num_cities, vector<vector<in
 
 vector<Tour *> PartitionTree(vector<vector<int>> G, int level) {
 	queue<pair<Tour*, int> > q;
-	
-	Tour *tour = new Tour;
+	Tour* tour = new Tour;
 	tour->cost = 0;
 	tour->visited.push_back(0);
 
@@ -178,32 +184,84 @@ vector<Tour *> PartitionTree(vector<vector<int>> G, int level) {
 		int q_size = q.size();
 		pair<Tour*, int> ptour_t = q.front();
 		Tour *cur_tour = ptour_t.first;
+		Tour *tmp_tour = new Tour;
+
+		tmp_tour = Clone(cur_tour);
+
 		int depth = ptour_t.second;
 		if (depth >= level) break;
+		
 		q.pop();
-		int city = cur_tour->visited[cur_tour->visited.size() - 1];
-		for (int next_city = 0; next_city < G.size(); next_city++) {
-			//cout << city << " " << next_city << endl;
-			int cost = G[city][next_city];
-			if(IsFeasible(cur_tour, G, city, next_city)) {
-				AddCity(cur_tour, next_city, cost);
-				Tour *new_tour = new Tour;
-				memcpy(new_tour, cur_tour, sizeof(Tour));
+		
+		int city = cur_tour->visited.at(cur_tour->visited.size() - 1);
+		
+		for (int nbr = 0; nbr < G[city].size(); nbr++) {
+			int cur_city = nbr;
+			int w = G[city][nbr];
+			if(IsFeasible(cur_tour, G, city, cur_city)) {
+				Tour* new_tour = new Tour;
+				new_tour = Clone(cur_tour);
+
+				AddCity(new_tour, cur_city, w);
 				q.push(make_pair(new_tour, depth + 1));
-				RemoveLastCity(cur_tour, next_city, cost);
 			}
 		}
 	}
+
 	vector<Tour *> qq;
 	while (!q.empty()) {
 		qq.push_back(q.front().first);
-		printVec(qq[qq.size() - 1]->visited);
+		//printVec(qq[qq.size() - 1]->visited);
 		q.pop();
 	}
 
-	printVec(qq);
-	cout << ":::" << level << endl;
 	return qq;
+}
+
+//there aren't v1 because it's the same that the serial version
+void dfs_omp_v2(stack<Tour *> &s, Tour *best_tour, int num_cities, vector<vector<int>> G) 
+{
+	int city, cost, root_id, next_city;
+	int idx, current_city;
+
+	while (!s.empty())
+	{
+		Tour *cur_tour = s.top();
+		s.pop();
+		if (cur_tour->visited.size() == num_cities)
+		{
+			cost = 0;
+			idx = -1;
+			current_city = cur_tour->visited[cur_tour->visited.size() - 1];
+			
+			if ((cost = G[current_city][0]) == INF) continue;
+
+			if(cur_tour->cost + cost < best_tour->cost)
+			{
+				*best_tour = *cur_tour;
+				//best_tour = Clone(cur_tour);
+				best_tour->cost += cost;
+				best_tour->visited.push_back(0);
+			}
+		}
+		else {
+			current_city = cur_tour->visited[cur_tour->visited.size() - 1];
+			for (int next_city = 0; next_city < G.size(); next_city++) 
+			{
+				if(IsFeasible(cur_tour, G, current_city, next_city)) 
+				{
+					cost = G[current_city][next_city];
+					AddCity(cur_tour, next_city, cost);
+					
+					Tour *new_tour = new Tour;
+					*new_tour = *cur_tour;
+					//new_tour = Clone(cur_tour);
+					s.push(new_tour);
+					RemoveLastCity(cur_tour, next_city, cost);
+				}
+			}
+		}
+	}
 }
 
 void tsp_serial_v1()
@@ -255,15 +313,22 @@ void tsp_omp_v1()
 	Tour *tour, *best_tour;
 	vector<vector<int>> G;
 	vector<Tour *> g_stack, l_stack;
+	omp_lock_t my_lock;
 
 	Initialize(num_cities, G);
 
-	// printMat(G);
+	//printMat(G);
+	//cout << "kkkkkkkkkkkkkk" << endl;
+	//vector<Tour *> q = PartitionTree(G, 2);
+	//for (int i = 0; i < q.size(); i++) {
+	//	mostrar_path(q[i]);
+	//}
 
-	//tour = new Tour;
-	//tour->cost = 0;
-	//tour->visited.push_back(0);
 
+
+	best_tour = new Tour;
+	best_tour->cost = INF;
+	
 	l_best_tour = new Tour;
 	l_best_tour->cost = INF;
 
@@ -274,9 +339,13 @@ void tsp_omp_v1()
 	tmp_best_tour->cost = INF;
 
 	omp_set_num_threads(3);
+	omp_init_lock(&my_lock);
 
 	#pragma	omp parallel private(tour, l_stack, l_best_tour, tmp_best_tour, id)
 	{
+		Tour *l_best_tour2 = new Tour;
+		l_best_tour2->cost = INF;
+
 		id = omp_get_thread_num();
 
 		#pragma omp master
@@ -287,29 +356,24 @@ void tsp_omp_v1()
 			for (int level = 0; level < num_cities; level++)
 			{
 				g_stack = PartitionTree(G, level);
-				//cout << g_stack.size() << endl;
 				if (g_stack.size() >= nThreads)
 					break;
 			}
 
-			if (g_stack.size() < nThreads)
-				omp_set_num_threads(g_stack.size());
+			//if (g_stack.size() < nThreads)
+			//	omp_set_num_threads(g_stack.size());
 
-			//cout << "g_stack size = " << g_stack.size() << endl;
-			//for (int i=0; i<g_stack.size(); i++)
-			//{
-			//	for (int j=0; j<g_stack[i]->visited.size(); j++)
-			//		cout << g_stack[i]->visited[j] << " ";
-			//	cout << endl;
+			//cout << "Stack from Master" << endl;
+			//for (int i = 0; i < g_stack.size(); i++) {
+			//	mostrar_path(g_stack[i]);
 			//}
-		}
+			//cout << "------" << endl;
+			//echo(g_stack.size());
+			//pause("master");
 
+		}
+//		pause("\notro\n");
 		#pragma omp barrier
-
-		{
-			//cout << omp_get_num_threads() << endl;
-			//cout << 1 << endl;
-		}
 
 		n_local_queue_size = g_stack.size() / nThreads;
 		
@@ -319,45 +383,47 @@ void tsp_omp_v1()
 		else
 			l_stack = vector<Tour *>(g_stack.begin() + id * n_local_queue_size, g_stack.end());
 
-#pragma omp critical
-		{
-			cout << "id = " << id << endl;
-			for (int i=0; i<l_stack.size(); i++)
-			{
-				for (int j=0; j<l_stack[i]->visited.size(); j++)
-					cout << l_stack[i]->visited[j] << " ";
-				cout << endl;
-			}
-			
-		}
+		//#pragma omp critical
+		//{
+		//	cout << "Local Stack id = " << id << endl;
+		//	for (int i=0; i<l_stack.size(); i++)
+		//	{
+		//		for (int j=0; j<l_stack[i]->visited.size(); j++)
+		//			cout << l_stack[i]->visited[j] << " ";
+		//		cout << endl;
+		//	}
+		//	c
+		//}
 
-		#pragma omp barrier
+//		#pragma omp barrier
+
 		for (int i = 0; i < l_stack.size(); i++)
 		{
-			memcpy(tmp_best_tour, ref_tour, sizeof(Tour));
+			tmp_best_tour = Clone(ref_tour);
 			tour = l_stack[i];
-			dfs_serial_v2(tour, tmp_best_tour, num_cities, G);
 
-			if (tmp_best_tour->cost < l_best_tour->cost)
-				memcpy(l_best_tour, tmp_best_tour, sizeof(Tour));
+			dfs_serial_v2(tour, tmp_best_tour, num_cities, G);
+		
+			if (tmp_best_tour->cost < l_best_tour2->cost)
+				//memcpy(l_best_tour, tmp_best_tour, sizeof(Tour));
+					l_best_tour2 = Clone(tmp_best_tour);
 		}
 		
-		g_best_tour[id] = *l_best_tour;
+		g_best_tour[id] = *l_best_tour2;
 
-		//#pragma omp atomic
-		cout << l_best_tour->cost << endl;
+		//use critial inside a lock work too
+		//#pragma omp critical
+		{
+			if (l_best_tour2->cost < best_tour->cost)
+			{
+				omp_set_lock(&my_lock);
+				best_tour = Clone(l_best_tour2);
+				omp_unset_lock(&my_lock);
+			}
+		}
 	}
 
-	//memcpy(best_tour, &(g_best_tour[0]), sizeof(Tour));
-	//for (int i = 1; i < nThreads; i++)
-	//{
-	//	if (g_best_tour[i].cost < best_tour->cost)
-	//	{
-	//		memcpy(best_tour, &(g_best_tour[i]), sizeof(Tour));	
-	//	}
-	//}
-	//
-	//cout << "Total Cost = " << best_tour->cost << endl;
+	cout << "Min cost tour" << best_tour->cost << endl;
 }
 
 
