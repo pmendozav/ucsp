@@ -1,0 +1,49 @@
+﻿Build started 6/2/2016 2:13:30 PM.
+     1>Project "C:\Users\Pavel\Documents\UCSP\git\paralelo\paralelo_tareas_cpu\trabaj1_tsp_mpi\trabaj1_tsp_mpi.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt Source.cpp
+         Source.cpp
+     1>c:\users\pavel\documents\ucsp\git\paralelo\paralelo_tareas_cpu\trabaj1_tsp_mpi\helper.h(54): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\pavel\documents\ucsp\git\paralelo\paralelo_tareas_cpu\trabaj1_tsp_mpi\helper.h(56): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\pavel\documents\ucsp\git\paralelo\paralelo_tareas_cpu\trabaj1_tsp_mpi\helper.h(69): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\pavel\documents\ucsp\git\paralelo\paralelo_tareas_cpu\trabaj1_tsp_mpi\helper.h(80): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\pavel\documents\ucsp\git\paralelo\paralelo_tareas_cpu\trabaj1_tsp_mpi\helper.h(170): warning C4996: 'strtok': This function or variable may be unsafe. Consider using strtok_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\string.h(200) : see declaration of 'strtok'
+     1>c:\users\pavel\documents\ucsp\git\paralelo\paralelo_tareas_cpu\trabaj1_tsp_mpi\helper.h(172): warning C4996: 'strtok': This function or variable may be unsafe. Consider using strtok_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\string.h(200) : see declaration of 'strtok'
+     1>c:\users\pavel\documents\ucsp\git\paralelo\paralelo_tareas_cpu\trabaj1_tsp_mpi\helper.h(195): warning C4996: 'strtok': This function or variable may be unsafe. Consider using strtok_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\string.h(200) : see declaration of 'strtok'
+     1>c:\users\pavel\documents\ucsp\git\paralelo\paralelo_tareas_cpu\trabaj1_tsp_mpi\helper.h(197): warning C4996: 'strtok': This function or variable may be unsafe. Consider using strtok_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\string.h(200) : see declaration of 'strtok'
+     1>c:\users\pavel\documents\ucsp\git\paralelo\paralelo_tareas_cpu\trabaj1_tsp_mpi\helper.h(199): warning C4996: 'strtok': This function or variable may be unsafe. Consider using strtok_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\string.h(200) : see declaration of 'strtok'
+     1>c:\users\pavel\documents\ucsp\git\paralelo\paralelo_tareas_cpu\trabaj1_tsp_mpi\helper.h(225): warning C4996: 'strtok': This function or variable may be unsafe. Consider using strtok_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\string.h(200) : see declaration of 'strtok'
+     1>c:\users\pavel\documents\ucsp\git\paralelo\paralelo_tareas_cpu\trabaj1_tsp_mpi\helper.h(227): warning C4996: 'strtok': This function or variable may be unsafe. Consider using strtok_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\string.h(200) : see declaration of 'strtok'
+     1>c:\users\pavel\documents\ucsp\git\paralelo\paralelo_tareas_cpu\trabaj1_tsp_mpi\helper.h(243): warning C4996: 'strtok': This function or variable may be unsafe. Consider using strtok_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\string.h(200) : see declaration of 'strtok'
+     1>c:\users\pavel\documents\ucsp\git\paralelo\paralelo_tareas_cpu\trabaj1_tsp_mpi\helper.h(245): warning C4996: 'strtok': This function or variable may be unsafe. Consider using strtok_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\string.h(200) : see declaration of 'strtok'
+     1>c:\users\pavel\documents\ucsp\git\paralelo\paralelo_tareas_cpu\trabaj1_tsp_mpi\helper.h(247): warning C4996: 'strtok': This function or variable may be unsafe. Consider using strtok_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\string.h(200) : see declaration of 'strtok'
+     1>Source.cpp(29): warning C4996: 'MPI_Type_extent': Deprecated in MPI 2.0, use 'MPI_Type_get_extent'.  To disable deprecation, define MSMPI_NO_DEPRECATE_20.
+                 C:\Program Files (x86)\Microsoft SDKs\MPI\Include\mpi.h(5972) : see declaration of 'MPI_Type_extent'
+     1>Source.cpp(34): warning C4996: 'MPI_Type_struct': Deprecated in MPI 2.0, use 'MPI_Type_create_struct'.  To disable deprecation, define MSMPI_NO_DEPRECATE_20.
+                 C:\Program Files (x86)\Microsoft SDKs\MPI\Include\mpi.h(5938) : see declaration of 'MPI_Type_struct'
+     1>Source.cpp(246): warning C4018: '>=' : signed/unsigned mismatch
+     1>Source.cpp(222): warning C4101: 'best_cost' : unreferenced local variable
+     1>Source.cpp(222): warning C4101: 'cost' : unreferenced local variable
+     1>Source.cpp(216): warning C4101: 'num_cities' : unreferenced local variable
+     1>Source.cpp(223): warning C4101: 'tour' : unreferenced local variable
+     1>Source.cpp(221): warning C4101: 'n_global_queue_size' : unreferenced local variable
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Pavel\Documents\UCSP\git\paralelo\paralelo_tareas_cpu\Release\trabaj1_tsp_mpi.exe" /INCREMENTAL:NO /NOLOGO /LIBPATH:"C:\Program Files (x86)\Microsoft SDKs\MPI\Lib\x86" msmpi.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Pavel\Documents\UCSP\git\paralelo\paralelo_tareas_cpu\Release\trabaj1_tsp_mpi.pdb" /SUBSYSTEM:CONSOLE /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Pavel\Documents\UCSP\git\paralelo\paralelo_tareas_cpu\Release\trabaj1_tsp_mpi.lib" /MACHINE:X86 /SAFESEH Release\Source.obj
+         Generating code
+         Finished generating code
+         trabaj1_tsp_mpi.vcxproj -> C:\Users\Pavel\Documents\UCSP\git\paralelo\paralelo_tareas_cpu\Release\trabaj1_tsp_mpi.exe
+     1>Done Building Project "C:\Users\Pavel\Documents\UCSP\git\paralelo\paralelo_tareas_cpu\trabaj1_tsp_mpi\trabaj1_tsp_mpi.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:01.99
