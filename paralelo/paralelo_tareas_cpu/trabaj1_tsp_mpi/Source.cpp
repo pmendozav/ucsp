@@ -208,7 +208,7 @@ int nTasks, myrank;
 void tsp_mpi(int argc, char** argv) 
 {
 	////////////////////////////////////////////////////estaban como glbal sobre Terminate
-	Tour2 *g_best_tour, *l_best_tour;
+	Tour2 *g_best_tour, *l_best_tour, *tmp_best_tour;
 	vector<Tour2 *> v_l_best_tour;
 	vector<stack<Tour2 *>> l_tours_pthread;
 	int threads_in_cond_wait = 0;
@@ -224,11 +224,12 @@ void tsp_mpi(int argc, char** argv)
 	
 	Input_MPI in;
 
-	vector<Tour2*> l_stack, g_stack;
+	vector<Tour2> l_stack, g_stack;
 	int *local_sizes, *local_offsets;
 		
 	g_best_tour = CreateTour2();
 	l_best_tour =  CreateTour2();
+	tmp_best_tour =  CreateTour2();
 
 	if (myrank == 0)
 	{
@@ -266,7 +267,6 @@ void tsp_mpi(int argc, char** argv)
 	{
 		local_sizes = new int[nTasks];
 		local_offsets = new int[nTasks];
-		g_stack.resize(9);
 	}
 
 	MPI_Bcast(&local_sizes[0], nTasks, MPI_INT, 0, MPI_COMM_WORLD);
@@ -277,20 +277,9 @@ void tsp_mpi(int argc, char** argv)
 	if (myrank != 0)
 		in.G_v = new int[in.num_cities*in.num_cities];
 	
-
-//	cout << myrank << endl;
-	//MPI_Bcast(asd, 
-	//		10, 
-	//		MPI_tour, 
-	//		0, 
-	//		MPI_COMM_WORLD);
-
-	//MPI_Bcast(&in.G_v[0], in.num_cities*in.num_cities, MPI_INT, 0, MPI_COMM_WORLD);
-	
-	//MPI_Bcast(&g_stack[0], g_stack.size(), MPI_tour, 0, MPI_COMM_WORLD);
-	
-	//l_stack.resize();
-
+	MPI_Bcast(&in.G_v[0], in.num_cities*in.num_cities, MPI_INT, 0, MPI_COMM_WORLD);
+		
+	l_stack.resize(local_sizes[myrank]);
 	MPI_Scatterv(&g_stack[0],
 				local_sizes,
 				local_offsets, 
@@ -300,39 +289,20 @@ void tsp_mpi(int argc, char** argv)
 				MPI_tour,
 				0,
 				MPI_COMM_WORLD);
+	
+	MPI_Barrier(MPI_COMM_WORLD);
+	Tour2 *current_tour;
+	for (int i = 0; i < l_stack.size(); i++)
+	{
+		current_tour = &l_stack[i];
 
-
-
-	//v_l_stack.resize(NUM_THREADS);
-	//for (int idx = 0; idx < NUM_THREADS; idx++)
-	//{
-	//	for (int i = 0; i < n_local_queue_size; i++)
-	//	{
-	//		v_l_stack[idx].push(g_stack.top());
-	//		g_stack.pop();
-	//	}
-	//}
-
-	//while (!g_stack.empty()) 
-	//{
-	//	v_l_stack[NUM_THREADS - 1].push(g_stack.top());
-	//	g_stack.pop();
-	//}
-
-	//pthread_t tids[NUM_THREADS];
-	//for (long i = 0; i < NUM_THREADS; i++) 
-	//	pthread_create(&tids[i], NULL, compute, (void *)i);
-
-	//for (long i = 0; i < NUM_THREADS; i++) 
-	//	pthread_join(tids[i], NULL);
-
-	////pthread_exit(NULL);
-	//
-	//cout << "best_tour = " << best_tour->cost << endl;
-	//pthread_mutex_destroy(&best_tour_mutex);
-	//pthread_mutex_destroy(&term_mutex);
-
-
+		dfs_serial_v2(current_tour, tmp_best_tour, in.num_cities, in.G_m); 
+		cout << "best_tour = " << tmp_best_tour->cost << endl;
+	}
+	
+	
+	
+	
 	
 }
 

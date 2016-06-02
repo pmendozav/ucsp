@@ -123,10 +123,24 @@ void AddCity(Tour *t, int city, int cost)
 	t->visited[t->num_cities++] = city;
 	t->cost += cost;
 }
+void AddCity(Tour2 &t, int city, int cost) 
+{
+	t.visited[t.num_cities++] = city;
+	t.cost += cost;
+}
 void AddCity(Tour2 *t, int city, int cost) 
 {
 	t->visited[t->num_cities++] = city;
 	t->cost += cost;
+}
+bool IsFeasible(Tour2 &t, int **G, int from, int to) 
+{
+	for(int i=0; i < t.num_cities; i++) 
+		if (t.visited[i] == to) return false;
+
+	if (G[from][to] == INF) return false;
+
+	return true;
 }
 bool IsFeasible(Tour2 *t, int **G, int from, int to) 
 {
@@ -138,6 +152,24 @@ bool IsFeasible(Tour2 *t, int **G, int from, int to)
 	return true;
 }
 void RemoveLastCity(Tour *t,int city, const int &cost)
+{
+	//t->visited.erase(t->visited.begin() + t->visited.size() - 1);
+
+	//vector<int> asd(t->visited.begin(), t->visited.end() - 1);
+
+	t->visited[t->num_cities-1] = -1;
+	t->num_cities--;
+}
+void RemoveLastCity(Tour2 &t,int city, const int &cost)
+{
+	//t->visited.erase(t->visited.begin() + t->visited.size() - 1);
+
+	//vector<int> asd(t->visited.begin(), t->visited.end() - 1);
+
+	t.visited[t.num_cities-1] = -1;
+	t.num_cities--;
+}
+void RemoveLastCity(Tour2 *t,int city, const int &cost)
 {
 	//t->visited.erase(t->visited.begin() + t->visited.size() - 1);
 
@@ -251,7 +283,7 @@ void Initialize(int &num_cities, vector<vector<int>> &G)
 	}
 }
 
-vector<Tour2 *> PartitionTree(int **G, int num_cities, int level) {
+vector<Tour2> PartitionTree(int **G, int num_cities, int level) {
 	queue<pair<Tour2*, int> > q;
 	Tour2* tour = CreateTour2();
 	tour->cost = 0;
@@ -287,12 +319,60 @@ vector<Tour2 *> PartitionTree(int **G, int num_cities, int level) {
 		}
 	}
 
-	vector<Tour2 *> qq;
+	vector<Tour2> qq;
 	while (!q.empty()) {
-		qq.push_back(q.front().first);
+		qq.push_back(*(q.front().first));
 		//printVec(qq[qq.size() - 1]->visited);
 		q.pop();
 	}
 
 	return qq;
+}
+
+
+void dfs_serial_v2(Tour2 *tour, Tour2 *best_tour, int num_cities, int **G) 
+{
+	int city, cost, root_id, next_city;
+	int idx, current_city;
+	stack<Tour2 *> s;
+
+	s.push(tour);
+	while (!s.empty())
+	{
+		Tour2 *cur_tour = s.top();
+		s.pop();
+		if (cur_tour->num_cities == num_cities)
+		{
+			cost = 0;
+			idx = -1;
+			current_city = cur_tour->visited[cur_tour->num_cities - 1];
+			
+			if ((cost = G[current_city][0]) == INF) continue;
+
+			if(cur_tour->cost + cost < best_tour->cost)
+			{
+				*best_tour = *cur_tour;
+				//best_tour = Clone(cur_tour);
+				best_tour->cost += cost;
+				best_tour->visited[best_tour->num_cities++] = 0;
+			}
+		}
+		else {
+			current_city = cur_tour->visited[cur_tour->num_cities - 1];
+			for (int next_city = 0; next_city < num_cities; next_city++) 
+			{
+				if(IsFeasible(cur_tour, G, current_city, next_city)) 
+				{
+					cost = G[current_city][next_city];
+					AddCity(cur_tour, next_city, cost);
+					
+					Tour2 *new_tour = CreateTour2();
+					*new_tour = *cur_tour;
+					//new_tour = Clone(cur_tour);
+					s.push(new_tour);
+					RemoveLastCity(cur_tour, next_city, cost);
+				}
+			}
+		}
+	}
 }

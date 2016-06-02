@@ -172,6 +172,7 @@ void dfs_serial_v2(Tour *tour, Tour *best_tour, int num_cities, vector<vector<in
 	}
 }
 
+
 vector<Tour *> PartitionTree(vector<vector<int>> G, int level) {
 	queue<pair<Tour*, int> > q;
 	Tour* tour = new Tour;
@@ -430,9 +431,9 @@ void tsp_omp_v1()
 
 int main() 
 {
-	tsp_omp_v1();
+	//tsp_omp_v1();
 	//tsp_serial_v1();
-	//tsp_serial_v2();
+	tsp_serial_v2();
 
 	cout << "Fin!" << endl;
 	getchar();
