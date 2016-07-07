@@ -1,0 +1,537 @@
+% --------------------------------------------------------------
+% This is all preamble stuff that you don't have to worry about.
+% Head down to where it says "Start here"
+% --------------------------------------------------------------
+ 
+\documentclass[12pt]{article}
+ 
+\usepackage[margin=1in]{geometry} 
+\usepackage{amsmath,amsthm,amssymb}
+\usepackage[utf8]{inputenc}
+ 
+\usepackage{tikz}
+\usetikzlibrary{matrix}
+\usepackage{environ} 
+ 
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+ 
+\newenvironment{theorem}[2][Theorem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{lemma}[2][Lemma]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{exercise}[2][Exercise]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{reflection}[2][Reflection]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{proposition}[2][Proposition]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{corollary}[2][Corollary]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+
+\newenvironment{problem}[2][Problem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+ 
+
+\NewEnviron{mymatrix}{%
+\begin{tikzpicture}[baseline,every right delimiter/.style={xshift=-8pt},every left delimiter/.style={xshift=8pt}]
+  \matrix [matrix of math nodes,left delimiter=(,right delimiter=),
+  ampersand replacement=\&](m)
+  {\BODY};\end{tikzpicture}} 
+
+\newenvironment{amatrix}[1]{%
+  \left(\begin{array}{@{}*{#1}{c}|c@{}}
+}{%
+  \end{array}\right)
+}
+
+\newenvironment{xmat}
+  {\left(\begin{smallmatrix}}
+  {\end{smallmatrix}\right)}
+
+    \makeatletter
+    \renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+      \hskip -\arraycolsep
+      \let\@ifnextchar\new@ifnextchar
+      \array{#1}}
+    \makeatother
+
+ 
+\begin{document}
+ 
+% --------------------------------------------------------------
+%                         Start here
+% --------------------------------------------------------------
+ 
+%\renewcommand{\qedsymbol}{\filledbox}
+ 
+\title{Solucionario de Tarea Domiciliaria}%replace X with the appropriate number
+\author{Mendoza Villafane, Pavel Angel.\\ %replace with your name
+Curso: Matemática para la Computación} %if necessary, replace with your course title
+ 
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%PROBLEMA 01%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ 
+\begin{problem}{1}
+Sea $B = \begin{xmat}1 & -1\\0 & 1\end{xmat}$ y M el espacio lineal euclideo de matrices 2x2 con las operaciones habituales de adición de matrices y de multiplicación de un escalar por una matriz, con producto interior $<A,B> = Traz(AB^{'})$. Si $S=\{A \in M : AB = BA = 0\}$ es el subespacio lineal de M y $C=\begin{xmat}1 & -1\\1 & 0\end{xmat}$ una matriz en M. Hallar en S la matriz mas próxima a C.
+\end{problem}
+ 
+\begin{proof}[Prueba]
+
+Lo primero es encontrar una base ortonormal del subespacio S. Con dicha base se puede obtener la proyección de C sobre dicho espacio (la matriz más proxima de S a C) empleando la ecuación 1. Donde $n$ es la dimensión del espacio S, $\{e_{1}, e_{2},..., e_{n}\}$ es una base ortonormal de S y $x$ es el vector que se quiere proyectar sobre el espacio S.
+
+\begin{equation} \label{eq1}
+s = \sum_{i=1}^{n} <x, e_{i}>e_{i}
+\end{equation}
+
+Para obtener una base ortornormal de S, se usará el proceso de Gram–Schmidt. Dado $A=\begin{xmat}a & b\\c & d\end{xmat} \in S$ se cumple: $AB=BA=0$.
+
+Pero $
+	AB=\begin{xmat}a & b\\c & d\end{xmat}
+		   \begin{xmat}1 & -1\\0 & 1\end{xmat}
+	  = Traz(\begin{xmat}a & b\\c & d\end{xmat}
+	  	\begin{xmat}1 & 0\\-1 & 1\end{xmat})
+	  = a-b+d$ y 
+	  $BA=\begin{xmat}1 & -1\\0 & 1\end{xmat}
+	  	   \begin{xmat}a & b\\c & d\end{xmat}
+	  = Traz(\begin{xmat}1 & -1\\0 & 1\end{xmat}
+	  	\begin{xmat}a & c\\b & d\end{xmat})
+	  = a-b+d$. Entonces $b = a+d
+	  \Rightarrow A=\begin{xmat}a & a+d\\c & d\end{xmat}
+		= a\begin{xmat}1 & 1\\0 & 0\end{xmat} +
+		  c\begin{xmat}0 & 0\\1 & 0\end{xmat} +
+		  d\begin{xmat}0 & 1\\0 & 1\end{xmat}$. Por lo que una base de S sería $\{ 
+		  \beta_{1}=\begin{xmat}1 & 1\\0 & 0\end{xmat},
+		  \beta_{2}=\begin{xmat}0 & 1\\0 & 1\end{xmat},
+		  \beta_{3}=\begin{xmat}0 & 0\\1 & 0\end{xmat}
+		   \}$.
+Empleando el proceso de Gram–Schmidt se obtendra una base $\{\alpha_{1},\alpha_{2},\alpha_{3}\}$ ortogonal, de la siguiente, manera:
+\begin{align*}
+\alpha_{1} = \beta_{1} = \begin{xmat}1 & 1\\0 & 0\end{xmat}
+\end{align*}
+
+\begin{align*}
+\alpha_{2} & = \beta_{2} - \frac{<\beta_{2}, \alpha_{1}>}{\|\alpha_{1}\|^{2}}\\
+& = \begin{xmat}0 & 1\\0 & 1\end{xmat} - 
+	\frac{Traz[\begin{xmat}0 & 1\\0 & 1\end{xmat}, \begin{xmat}1 & 0\\1 & 0\end{xmat}]}
+		 {\|\begin{xmat}1 & 1\\0 & 0\end{xmat}\|^{2}}\\
+& = \begin{xmat}0 & 1\\0 & 1\end{xmat} - \frac{1}{2}\begin{xmat}1 & 1\\0 & 0\end{xmat}\\
+& = \begin{xmat}-1/2 & 1/2\\0 & 1\end{xmat}
+\end{align*}
+
+\begin{align*}
+\alpha_{3} & = \beta_{3} - \frac{<\beta_{3}, \alpha_{1}>}{\|\alpha_{1}\|^{2}}
+						 - \frac{<\beta_{3}, \alpha_{2}>}{\|\alpha_{2}\|^{2}}\\
+& = \begin{xmat}0 & 0\\1 & 0\end{xmat}
+	- \frac{Traz[\begin{xmat}0 & 0\\1 & 0\end{xmat},\begin{xmat}1 & 0\\1 & 0\end{xmat}]}
+		   {\|\begin{xmat}1 & 1\\0 & 0\end{xmat}\|^{2}}\begin{xmat}1 & 1\\0 & 0\end{xmat}
+	- \frac{Traz[\begin{xmat}0 & 0\\1 & 0\end{xmat},\begin{xmat}-1/2 & 0\\1/2 & 1\end{xmat}]}
+		   {\|\begin{xmat}-1/2 & 1/2\\0 & 1\end{xmat}\|^{2}}\begin{xmat}-1/2 & 1/2\\0 & 1\end{xmat}			\\
+& = \begin{xmat}0 & 0\\1 & 0\end{xmat}
+	- 0 - 0\\
+& = \begin{xmat}0 & 0\\1 & 0\end{xmat}	
+\end{align*}
+
+Por lo que, $\{\alpha_{1}=\begin{xmat}1 & 1\\0 & 0\end{xmat},
+			\alpha_{2}=\begin{xmat}-1/2 & 1/2\\0 & 1\end{xmat},
+			\alpha_{3}=\begin{xmat}0 & 0\\1 & 0\end{xmat}\}$ es una base ortogonal. Para ortonormalizar dicha base, solo debe dividirse cada vector entre su norma. dichas normas son $\|\alpha_{1}\|=\sqrt{2}, \|\alpha_{2}\|=\sqrt{3/2}, \|\alpha_{3}\|=\sqrt{1}=1$, por lo que la base ornormal buscada sería $\{\alpha_{1}=\frac{1}{\sqrt{2}}\begin{xmat}1 & 1\\0 & 0\end{xmat},
+			\alpha_{2}=\frac{1}{\sqrt{3/2}}\begin{xmat}-1/2 & 1/2\\0 & 1\end{xmat},
+			\alpha_{3}=\begin{xmat}0 & 0\\1 & 0\end{xmat}\}$\\
+
+Empleando la ecuación (1):
+			
+\begin{align*}
+s & = <C, \alpha_{1}>\alpha_{1} + <C, \alpha_{2}>\alpha_{2} + <C, \alpha_{3}>\alpha_{3} \\
+& = Traz[\begin{xmat}1 & -1\\1 & 0\end{xmat}, \frac{1}{\sqrt{2}}\begin{xmat}1 & 0\\1 & 0\end{xmat}]\frac{1}{\sqrt{2}}\begin{xmat}1 & 1\\0 & 0\end{xmat}
+   +Traz[\begin{xmat}1 & -1\\1 & 0\end{xmat}, \frac{1}{\sqrt{3/2}}\begin{xmat}-1/2 & 0\\1/2 & 1\end{xmat}]\frac{1}{\sqrt{3/2}}\begin{xmat}-1/2 & 1/2\\0 & 1\end{xmat} \\  
+&  +Traz(\begin{xmat}1 & -1\\1 & 0\end{xmat}, \begin{xmat}0 & 1\\0 & 0\end{xmat})
+	\begin{xmat}0 & 0\\1 & 0\end{xmat} \\
+ & = 0 + 2/3(-1)\begin{xmat}-1/2 & 1/2\\0 & 1\end{xmat} + (1)\begin{xmat}0 & 0\\1 & 0\end{xmat} \\
+ & =\begin{xmat}1/3 & -1/3\\0 & -2/3\end{xmat} + \begin{xmat}0 & 0\\1 & 0\end{xmat} \\
+ & = \begin{xmat}1/3 & -1/3\\1 & -2/3\end{xmat}
+\end{align*}
+\end{proof}
+ 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%PROBLEMA 02%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{2}
+\end{problem}
+\begin{problem}{2.1}
+Si V es un espacio vectorial sobre el cuerpo F. \\
+Si T es un operador lineal sobre V que cumple $T^{2}=0$. ¿Qué se puede decir de la relación que existe entre la imagen de T y el espacio nulo de T? Dar un ejemplo de un operador lineal T en $R^{2}$ tal que $T^{2}$=0 pero $T\neq0$.
+\end{problem}
+ 
+\begin{proof}[Prueba]
+Dado $x \in V \Longrightarrow T(x) \in Im(T)$ pero $T(T(x))= 0$ (por condición del problema) $\Longrightarrow T(x) \in N(T)$ (núcleo de T) $\Longrightarrow Im(T) \subset N(T)$. Tambien $N(T) \subset Im(T) \Longrightarrow N(T) = Im(T)$. \\
+Un ejemplo de esta transformación es el operador lineal T definido por $T\begin{xmat}x \\y\end{xmat} = \begin{xmat}0 & 1\\0 & 0\end{xmat}\begin{xmat}x \\y\end{xmat}$. Se tiene que $T=\begin{xmat}0 & 1\\0 & 0\end{xmat}$ y $T^{2}=\begin{xmat}0 & 1\\0 & 0\end{xmat}\begin{xmat}0 & 1\\0 & 0\end{xmat}=\begin{xmat}0 & 0\\0 & 0\end{xmat}$. Y además T es no nulo.
+\end{proof}
+
+\begin{problem}{2.2}
+Si $V= R^{2}$, encontrar operadores T y U tales que $TU=0$ pero que $UT \neq 0$.
+\end{problem}
+
+\begin{proof}[Prueba]
+Sea $T=\begin{xmat}a & b\\c & d\end{xmat}$ y $U=\begin{xmat}0 & 1\\0 & 0\end{xmat}$\\
+Verifiquemos las condiciones dadas en el problema.\\
+
+$TU=\begin{xmat}a & b\\c & d\end{xmat}\begin{xmat}0 & 1\\0 & 0\end{xmat} = 
+	\begin{xmat}0 & a\\0 & c\end{xmat}=0 \Longrightarrow a=c=0.$ \\
+Sin embargo \\
+$UT= \begin{xmat}0 & 1\\0 & 0\end{xmat}\begin{xmat}a & b\\c & d\end{xmat} = 
+	\begin{xmat}c & d\\0 & 0\end{xmat}\neq 0 \Longrightarrow c=0 \lor d=0.$ \\
+De estas 2 condiciones se tiene que $d \neq 0$ necesariamente $\Longrightarrow$ tomamos $d=1$. El valor de $b$ puede ser cualquiera, por lo que tomamos $b=0$. Por lo que la transformación sería: $T=\begin{xmat}0 & 0\\0 & 1\end{xmat}$, la cual cumple las condiciones pedidas. En efecto: 
+$TU=\begin{xmat}0 & 0\\0 & 1\end{xmat}\begin{xmat}0 & 1\\0 & 0\end{xmat}=
+	\begin{xmat}0 & 0\\0 & 0\end{xmat}$ y $UT=\begin{xmat}0 & 1\\0 & 0\end{xmat}\begin{xmat}0 & 0\\0 & 1\end{xmat}=
+	\begin{xmat}0 & 1\\0 & 0\end{xmat}$
+\end{proof}
+
+\begin{problem}{2.3}
+Si $V=C$ (números complejos) y $F= R$ (los reales). Se define la función $V$ en el espacio de las matrices reales $2x2$ de la siguiente forma: Si $z= x + iy$, con $x$ e $y$ números reales, entonces \\
+$T(z)=\begin{xmat}x+7y & 5y\\-10y & x-7y\end{xmat}$\\
+i. Verificar que T es una transformación lineal inyectiva.\\
+ii. ¿Cómo se describirá la imagen de T?
+\end{problem}
+
+\begin{proof}[Prueba]
+Para demostrar que T es inyectiva, basta verificar que su núcleo $N(T)=\{0\}$. En efecto, dado $z=x+iy \in N(T) \Longrightarrow T(z)=\begin{xmat}x+7y & 5y\\-10y & x-7y\end{xmat}=\begin{xmat}0 & 0\\0 & 0\end{xmat}$. Con ello se tiene que $x+7y=0, 5y=0$ con lo que $y=0$ y $x=0$. Entonces $z=0$. Luego, T es inyectiva.\\
+Por otro lado, La imagen de T se puede describir obteniendo una base de esta. dado $z=x+iy \in V \Longrightarrow T(z)=\begin{xmat}x+7y & 5y\\-10y & x-7y\end{xmat}=
+x\begin{xmat}1 & 0\\0 & 1\end{xmat} + 
+y\begin{xmat}7 & 5\\-10 & -7\end{xmat}$. Con lo que $Im(T)=Span\{\begin{xmat}1 & 0\\0 & 1\end{xmat}, \begin{xmat}7 & 5\\-10 & -7\end{xmat}\}$
+\end{proof}
+
+\begin{problem}{2.4}
+Si V es el espacio de todos los polinomios $p(x)$ reales de grado menor o igual a n. Si p pertenece a V,  $q=T(p)$ significa $q(x)=xp'(x)$ para todo x real. Pruebe que T es lineal, halle su núcleo, imagen, nulidad y rango de T.
+\end{problem}
+
+\begin{proof}[Prueba]
+Primero probemos que T es lineal. Para ello, tomemos $p, q \in V$ arbitrarios y $\lambda \in R$, donde $p(x)=\sum_{i=0}^{n} a_{i}x^{i}$ y $q(x)=\sum_{i=0}^{n} b_{i}x^{i}$. Se tiene que $p'(x)=\sum_{i=1}^{n} ia_{i-1}x^{i}$ y $q(x)=\sum_{i=1}^{n} ib_{i}x^{i-1}$.\\
+Por demostrar que: $T(p + \lambda q) = T(p) + \lambda T(q)$. En efecto, dado $x \in R$:\\
+
+\begin{align*}
+(p + \lambda q)'(x) & = (\sum_{i=0}^{n} a_{i}x^{i} + \lambda \sum_{i=0}^{n} b_{i}x^{i})'\\
+& = [\sum_{i=0}^{n} (a_{i} + \lambda b_{i})x^{i}]'\\
+& = \sum_{i=1}^{n} i(a_{i} + \lambda b_{i})x^{i-1}\\
+& = \sum_{i=1}^{n} (ia_{i} + i\lambda b_{i})x^{i-1}\\
+& = \sum_{i=1}^{n} (ia_{i}x^{i-1} + i\lambda b_{i}x^{i-1})\\
+& = \sum_{i=1}^{n}ia_{i}x^{i-1} + \sum_{i=1}^{n}i\lambda b_{i}x^{i-1}\\
+& = \sum_{i=1}^{n}ia_{i}x^{i-1} + \lambda \sum_{i=1}^{n}i b_{i}x^{i-1}\\
+& = p'(x) + \lambda q'(x); \forall x \in R
+\end{align*}
+
+De lo anterior se tiene que $T(p + \lambda q) = T(p) + \lambda T(q) \Longrightarrow$ T es lineal.\\
+
+Revisemos la forma de la imagen de T. Dado $p \in V$ t.q. $p(x)=\sum_{i=0}^{n}a_{i}x^{i}, \forall x \in R$. \\
+Sea $q=T(p) \Longrightarrow q(x)=xp'(x)=x(\sum_{i=0}^{n}a_{i}x^{i})'= 
+	  x(\sum_{i=1}^{n}ia_{i}x^{i-1})=\sum_{i=1}^{n}ia_{i}x^{i}$\\
+De donde $q=T(p) \in Span\{x, x^{2}, ..., x^{n}\}$. Por tanto $Im(T)=Span\{x, x^{2}, ..., x^{n}\}$. Por lo que su rango es $n$.\\
+
+Ahora revisemos el núcleo. Dado $p \in N(T)$ t.q. $p(x) = \sum_{i=0}^{n}a_{i}x^{i} \Longrightarrow 
+T(p)=\sum_{i=1}^{n}ia_{i}x^{i}= 0; \forall x \in R$. Como $\{x, x^{2}, ..., , x^{n}\}$ es l.i. Se tiene que $ia_{i}=0 \Longrightarrow a_{i}=0; \forall i \in \{1,...,n\}$.\\
+Por lo anterior, se tiene que $p(x)=a_{0} \in Span\{1\} \Longrightarrow N(T)=Span\{1\}$. Por lo que su nulidad es 1.
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%PROBLEMA 03%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{3}
+Sean V y W espacios vectoriales de dimensión finita sobre el cuerpo F.
+\end{problem}
+
+\begin{problem}{3.1}
+Demostrar que V y W son isomorfos si y solo si dim V = dim W.
+\end{problem}
+
+\begin{proof} [Prueba]
+$(\Rightarrow)$ Sean V y W isomorfos. Entonces, $\exists T:V\longrightarrow W$ isomorfismo, por lo que $dim(Im(T))=dim(W)$ (ya que T es sobreyectivo). Tambien, por el teorema de la dimension $dim(V)=dim(Im(T))+dim(N(T))=dim(W)+0=dim(W) \Longrightarrow dim(V)=dim(W)$.\\
+\\
+($\Leftarrow$) Sea $dim(V)=dim(W)=n$. Sean $B_V=\{\alpha_{1}, \alpha_{2}, ..., \alpha_{n}\}$ y $B_W=\{\beta_{1}, \beta_{2}, ..., \beta_{n}\}$ bases de V y W respectivamente. 
+
+Se define $T:V \longrightarrow W$ t.q. $T(\alpha_{i})=\beta_{i}; \forall i \in \{1,...,n\}$. Tal función está bien definida y es lineal. Por último, se afirma que T es un isomorfismo. En efecto:\\
+T es inyecto: Dado $\alpha \in N(T)$ t.q. $\alpha=\sum_{i=1}^{n}a_{i}\alpha_{i}$ (ya que $\alpha \in V$) $\Longrightarrow T(\alpha)=T(\sum_{i=1}^{n}a_{i}\alpha_{i})=\sum_{i=1}^{n}a_{i}T(\alpha_{i})=\sum_{i=1}^{n}a_{i}\beta_{i} = 0$, pero $B_W$ es l.i. por lo que $a_{i} \forall i \in \{1,...,n\}$. Entonces $\alpha=\sum_{i=1}^{n}a_{i}\alpha_{i}=0$, de donde $N(T)={0} \Longrightarrow$ T es inyectivo.\\
+T es sobreyectivo: Para probar esto basta encontrar para cualquier $\beta \in W$ un elemento $\alpha \in V$ t.q. $T(\alpha)=\beta$, con lo que $W \subset Im(T)$ y ya que se cumple $Im(T) \subset W$ se tendría que $Im(T) = W$ (sobreyectivo). En efecto:\\
+Dado $\beta \in W$ este se puede representar como una combinación lineal de su base: $\beta = \sum_{i=1}^{n}a_{i}\beta_{i}=\sum_{i=1}^{n}a_{i}T(\alpha_{i})= T(\sum_{i=1}^{n}a_{i}\alpha_{i})=T(\alpha)$, donde $\alpha=\sum_{i=1}^{n}a_{i}\alpha_{i} \in V$ con lo que $W \subset Im(T)$. Por lo expuesto en lo anterior, T es sobreyectivo.
+\end{proof}
+
+\begin{problem}{3.2}
+Si U es un isomorfismo de V sobre W. Demostrar que la correspondencia  $T \longrightarrow UTU^{-1}$  es un isomorfismo de L(V,V) sobre L(W,W).
+\end{problem}
+
+\begin{proof} [Prueba]
+Sea $f:L(V,V) \Longrightarrow L(W,W)$ t.q. $f(T)=UTU^{-1}$. Por demostrar que $f$ es un isomorfismo.\\
+
+-Primero debemos probar que $f$ es lineal. Para ello, dados $T,S \in L(V,V)$ y $\lambda \in F$: $f(T+\lambda S)=U(T+\lambda S)U^{-1}
+	=UTU^{-1}+U\lambda SU^{-1}=UTU^{-1}+\lambda USU^{-1}
+	=f(T)+\lambda f(S)$. Por lo que $f$ es lineal.\\
+	
+-$f$ es inyectivo. En efecto, dados $T, S \in L(V,V)$: 
+\begin{align*}
+f(T) & = f(S) \\
+UTU^{-1} & = USU^{-1}\\
+U^{-1}UTU^{-1} & = U^{-1}USU^{-1}\\
+TU^{-1} & = SU^{-1}\\
+TU^{-1}U & = SU^{-1}U\\
+T=S
+\end{align*}\\
+
+-$f$ es sobreyectivo. Para probar esto es necesario tener en cuenta que, ya que, U es un isomorfismo, existe $U^{-1}:W \rightarrow V$. \\
+Dado un $B \in L(W,W)$, se observa la relación $V \xrightarrow{U} W \xrightarrow{B} W \xrightarrow{U^{-1}} V$, por lo que $U^{-1}BU \in L(V,V)$. Entonces, $f(U^{-1}BU)=U(U^{-1}BU)U^{-1}=B$. Es decir, $L(W,W) \subset Im(f)$. También se cumple $Im(f) \subset L(W,W) \Longrightarrow Im(f)=L(W,W)$ (sobreyectivo).\\
+Por lo anterior, $f$ es un isomorfismo.
+\end{proof} 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%PROBLEMA 04%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{problem}{4}
+Sea T el operador lineal sobre $R^{2}$ definido por  $T(x_{1},x_{2})=(-x_{2},x_{1})$.
+\end{problem}
+
+\begin{problem}{4.1}
+Cuál es la matriz de T en la base canónica de $R_{2}$?
+\end{problem}
+
+\begin{proof} [Prueba]
+Sea $B=\{(1,0), (0,1)\}$ la base canónica de $R^{2} \Longrightarrow T(1,0)=(0,1)$ y $T(0,1)=(-1,0) \Longrightarrow A=\begin{xmat}0 & -1\\1 & 0\end{xmat}$ es la matriz de T en la base canónica.
+\end{proof} 
+
+\begin{problem}{4.2}
+Cuál es la matriz en las base ordenada $B'=\{(1,2), (1,-1)\}$?
+\end{problem}
+
+\begin{proof} [Prueba]
+Sea $B=\{e_{1}=(1,0), e_{2}=(0,1)\}$ la base canónica de $R^{2}$ y $B'=\{(1,2), (1,-1)\}$ otra base.\\
+$(1,2) = 1e_{1} + 2e_{2}$\\
+$(1,-1) = 1e_{1} + (-1)e_{2}$\\
+Entonces, sea $P=\begin{xmat}1 & 1\\2 & -1\end{xmat}$. y su inversa $P^{-1}=\begin{xmat}1/3 & 1/3\\2/3 & -1/3\end{xmat}$\\
+Sea sabe que: $[T]_{B'}=P^{-1}[T]_{B}P$ es la matriz de T en la base B', donde $[T]_{B}$ es la matriz de T en la base canónica. Entonces:
+\begin{align*}
+[T]_{B'} & =\begin{xmat}1/3 & 1/3\\2/3 & -1/3\end{xmat}\begin{xmat}0 & -1\\1 & 0\end{xmat}\begin{xmat}1 & 1\\2 & -1\end{xmat}\\
+& = \frac{1}{3}\begin{xmat}1 & 1\\2 & -1\end{xmat}\begin{xmat}0 & -1\\1 & 0\end{xmat}\begin{xmat}1 & 1\\2 & -1\end{xmat}\\
+& = \frac{1}{3}\begin{xmat}1 & -1\\-1 & -2\end{xmat}\begin{xmat}1 & 1\\2 & -1\end{xmat}\\
+& = \frac{1}{3}\begin{xmat}-1 & 2\\-5 & 1\end{xmat}
+\end{align*}
+Es la matriz asociada a T en la base $S=\{(1,2), (1,-1)\}$.
+\end{proof} 
+
+\begin{problem}{4.3}
+Demostrar que para cada número real c el operador $(T - cI)$  es inversible.
+\end{problem}
+
+\begin{proof} [Prueba]
+Dado $c \in R$. En la base canónica, $A=\begin{xmat}0 & -1\\1 & 0\end{xmat}$ es la matriz de T. La transformación $L=(T-cI)$ tiene como matriz asociada a $(A-cI)=\begin{xmat}-c & -1\\1 & -c\end{xmat}$ de donde $|A-cI|=c^{2}+1 \neq 0, \forall c \in R$ por lo que $L=(T-cI)$ es inversible.
+\end{proof} 
+
+\begin{problem}{4.4}
+Demostrar que si S es cualquier base ordenada para $R_{2}$ y $[T]_{S} = A$, entonces $A_{12}A_{21} \neq 0$.
+\end{problem}
+
+\begin{proof} [Prueba]
+Sea $B=\{(x_{1},y_{1}), (x_{2},y_{2})\}$. Entonces,\\
+-Evaluando en $(x_{1},y_{1})$: $T(x_{1},y_{1})=(-y_{1},x_{1})=a_{1}(x_{1},y_{1})+a_{2}(x_{2},y_{2})$... (1) \\
+-Evaluando en $(x_{2},y_{2})$: $T(x_{2},y_{2})=(-y_{2},x_{2})=b_{1}(x_{1},y_{1})+b_{2}(x_{2},y_{2})$... (2) \\
+Con lo anterior se tiene $[T]_{S}=A=\begin{xmat}a_{1} & b_{1}\\a_{2} & b_{2}\end{xmat}$. De donde $A_{12}=b_{1}$ y $A_{21}=a_{2}$.\\
+De (1) se obtiene el sistema $a_{1}x_{1}+a_{2}x_{2}=-y_{1}$ y $a_{1}y_{1}+a_{2}y_{2}=x_{1}$. Despejando $a_{2}=\frac{x_{1}^{2}+y_{1}^{2}}{x_{1}y_{2}-x_{2}y_{1}}$\\
+De (2) se obtiene el sistema $b_{1}x_{1}+b_{2}x_{2}=-y_{2}$ y $b_{1}y_{1}+b_{2}y_{2}=x_{2}$. Despejando $b_{1}=\frac{x_{2}^{2}+y_{2}^{2}}{x_{2}y_{1}-x_{1}y_{2}}$\\
+Ahora: $A_{12}A_{21}=b_{1}a_{2}=(\frac{x_{2}^{2}+y_{2}^{2}}{x_{2}y_{1}-x_{1}y_{2}}) (\frac{x_{1}^{2}+y_{1}^{2}}{x_{1}y_{2}-x_{2}y_{1}})=-
+\frac{(x_{2}^{2}+y_{2}^{2})(x_{1}^{2}+y_{1}^{2})}{(x_{1}y_{2}-x_{2}y_{1})^{2}}$. Pero como los elementos de B son no nulos, al menos una de sus componentes debe ser distinto de 0, por lo que la suma del cuadrado de sus componentes es siempre distinto de 0. De ello $(x_{2}^{2}+y_{2}^{2})(x_{1}^{2}+y_{1}^{2}) \neq 0$. \\
+Por otro lado, supongamos que $x_{1}y_{2}-x_{2}y_{1}=0$, entonces, sin pérdida de generalidad supongamos que $y_{2} \neq 0 \Longrightarrow x_{1} = \frac{x_{2}y_{1}}{y_{2}}$. De ello, $(x_{1},y_{1})=(\frac{x_{2}y_{1}}{y_{2}}, y_{1})=\frac{y_{1}}{y_{2}}(x_{2},y_{2})$ por lo que $(x_{1},y_{1})$ y $(x_{2},y_{2})$ son l.d. $(\Rightarrow \Leftarrow)$. Por lo que $x_{1}y_{2}-x_{2}y_{1} \neq 0$.\\
+De ello se tiene que $A_{12}A_{21}=-\frac{(x_{2}^{2}+y_{2}^{2})(x_{1}^{2}+y_{1}^{2})}{(x_{1}y_{2}-x_{2}y_{1})^{2}} \neq 0$.
+\end{proof} 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%PROBLEMA 05%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{problem}{5}
+Sea V el espacio vectorial de todas las funciones polinómicas p de R en R, que tienen grado menor o igual a 2:  $p(x)= c_{0}+c_{1}x+c_{2}x^{2}$. Si se de finen tres funcionales lineales sobre V por $f_{1}=\int_{0}^{1}p(x)dx, f_{2}=\int_{0}^{2}p(x)dx, f_{3}=\int_{0}^{-1}p(x)dx$. \\
+Demostrar que $\{f_{1}, f_{2}, f_{3}\}$ es una base de V*, presentando la base de V de la cual ésta es dual.
+\end{problem}
+
+\begin{proof} [Prueba]
+Primero probemos que $B_{V^{*}}=\{f_{1}, f_{2}, f_{3}\}$ es base de V*. Sea $L=a_{1}f_{1}+a_{2}f_{2}+a_{3}f_{3}$. Veamos el caso cuando $L=0$, es decir, $L(p)=0, \forall p \in V$.\\
+Para $p=1 \Longrightarrow f_{1}(1)=1, f_{2}(1)=2, f_{3}(1)=1 \Longrightarrow c_{1}+2c_{2}+c_{3}=0$\\
+Para $p=2x \Longrightarrow f_{1}(2x)=1, f_{2}(2x)=4, f_{3}(2x)=-1 \Longrightarrow c_{1}+4c_{2}-c_{3}=0$\\
+Para $p=3x^{2} \Longrightarrow f_{1}(3x^{2})=1, f_{1}(3x^{2})=8, f_{3}(3x^{2})=1 \Longrightarrow c_{1}+8c_{2}+c_{3}=0$\\
+Se tiene el sistema de ecuaciones:\\
+$\begin{xmat}1 & 2 & 1\\1 & 4 & -1 \\ 1 & 8 & 1\end{xmat}
+\begin{xmat}c_{1}\\c_{2} \\ c_{3}\end{xmat}=
+\begin{xmat}0\\0 \\ 0\end{xmat}$ donde $det[\begin{xmat}1 & 2 & 1\\1 & 4 & -1 \\ 1 & 8 & 1\end{xmat}]=12 \neq 0 \Longrightarrow c_{1}=c_{2}=c_{3}=0$\\
+Con lo que $B$ es l.i. Además, como $dim(V^{*})=dim(V)=3 \Longrightarrow$ $B_{V^{*}}$ es base de V*. \\
+
+Ahora busquemos la base $B_{V}$ de V para el cual $B_{V^{*}}$ es base de V*. 
+Dado $p \in V$ t.q. $p(x) = c_{0}+c_{1}x+c_{2}x^{2}$. Se tiene que:\\
+
+$f_{1}=\int_{0}^{1}p(x)dx 
+  = (c_{0}x+\frac{1}{2}c_{1}x^{2}+\frac{1}{3}c_{2}x^{3})|_{0}^{1}
+  = c_{0} + \frac{c_{1}}{2} + \frac{c_{2}}{3}$\\
+  
+$f_{2}=\int_{0}^{2}p(x)dx 
+  = (c_{0}x+\frac{1}{2}c_{1}x^{2}+\frac{1}{3}c_{2}x^{3})|_{0}^{2}
+  = 2c_{0} + 2c_{1} + \frac{8c_{2}}{3}$\\
+
+$f_{3}=\int_{0}^{-1}p(x)dx 
+  = (c_{0}x+\frac{1}{2}c_{1}x^{2}+\frac{1}{3}c_{2}x^{3})|_{0}^{-1}
+  = -c_{0} + \frac{c_{1}}{2} - \frac{c_{2}}{3}$\\
+
+Sea $B_{V}=\{\alpha_{1}, \alpha_{2}, \alpha_{3}\}$. Se sabe que: dado un $\alpha \in V$, $\alpha=f_{1}(\alpha)\alpha_{1} + f_{2}(\alpha)\alpha_{2} + f_{3}(\alpha)\alpha_{3}$. Es decir, $f_{i}(\alpha)$ es la coordenada $i$ de $\alpha$ en la base $B_{V}$. En caso particular:\\
+
+-Para $\alpha_{1}$: $c_{0} + \frac{c_{1}}{2} + \frac{c_{2}}{3}=1,
+	2c_{0} + 2c_{1} + \frac{8c_{2}}{3} = 0,
+	-c_{0} + \frac{c_{1}}{2} - \frac{c_{2}}{3} = 0
+$. La matriz aumentada del sistema sería:\\
+
+$
+  \left[\begin{array}{rrr|r}
+    1	& 1/2 	& 1/3 	& 1 \\
+    2	& 2 	& 8/3 	& 0 \\
+    -1	& 1/2 	& -1/3 	& 0 
+  \end{array}\right]
+  \rightarrow 
+  \left[\begin{array}{rrr|r}
+    1	& 1/2 	& 1/3 	& 1 \\
+    0	& 1 	& 2 	& -2 \\
+    0	& 1 	& 0 	& 1 
+  \end{array}\right]
+  \rightarrow
+  \left[\begin{array}{rrr|r}
+    1	& 0 	& -2/3 	& 2 \\
+    0	& 1 	& 2 	& -2 \\
+    0	& 0 	& -2 	& 3 
+  \end{array}\right]
+  \rightarrow
+  \left[\begin{array}{rrr|r}
+    1	& 0 	& 0 	& 1 \\
+    0	& 1 	& 0 	& 1 \\
+    0	& 0 	& 1 	& -3/2 
+  \end{array}\right]   
+$\\
+De donde $\alpha_{1} = 1 + x + \frac{-3}{2}x^{2}$\\
+
+-Para $\alpha_{2}$: $c_{0} + \frac{c_{1}}{2} + \frac{c_{2}}{3}=0,
+	2c_{0} + 2c_{1} + \frac{8c_{2}}{3} = 1,
+	-c_{0} + \frac{c_{1}}{2} - \frac{c_{2}}{3} = 0
+$. La matriz aumentada del sistema sería:\\
+$
+  \left[\begin{array}{rrr|r}
+    1	& 1/2 	& 1/3 	& 0 \\
+    2	& 2 	& 8/3 	& 1 \\
+    -1	& 1/2 	& -1/3 	& 0 
+  \end{array}\right]
+  \rightarrow 
+  \left[\begin{array}{rrr|r}
+    1	& 1/2 	& 1/3 	& 0 \\
+    0	& 1 	& 2 	& 1 \\
+    0	& 1 	& 0 	& 0 
+  \end{array}\right]
+  \rightarrow   
+  \left[\begin{array}{rrr|r}
+    1	& 0 	& -2/3 	& -1/2 \\
+    0	& 1 	& 2 	& 1 \\
+    0	& 0 	& -2 	& -1 
+  \end{array}\right]
+  \rightarrow     
+  \left[\begin{array}{rrr|r}
+    1	& 0 	& 0 	& -1/6 \\
+    0	& 1 	& 0 	& 0 \\
+    0	& 0 	& 1 	& 1/2 
+  \end{array}\right]
+$\\
+De donde $\alpha_{2} = \frac{-1}{6} + \frac{1}{2}x^{2}$\\
+
+-Para $\alpha_{3}$: $c_{0} + \frac{c_{1}}{2} + \frac{c_{2}}{3}=0,
+	2c_{0} + 2c_{1} + \frac{8c_{2}}{3} = 0,
+	-c_{0} + \frac{c_{1}}{2} - \frac{c_{2}}{3} = 1
+$. La matriz aumentada del sistema sería:\\
+$
+  \left[\begin{array}{rrr|r}
+    1	& 1/2 	& 1/3 	& 0 \\
+    2	& 2 	& 8/3 	& 0 \\
+    -1	& 1/2 	& -1/3 	& 1 
+  \end{array}\right]
+  \rightarrow 
+  \left[\begin{array}{rrr|r}
+    1	& 1/2 	& 1/3 	& 0 \\
+    0	& 1 	& 2 	& 0 \\
+    0	& 1 	& 0 	& 1 
+  \end{array}\right]
+  \rightarrow   
+  \left[\begin{array}{rrr|r}
+    1	& 0 	& -2/3 	& 0 \\
+    0	& 1 	& 2 	& 0 \\
+    0	& 0 	& -2 	& 1 
+  \end{array}\right]
+  \rightarrow     
+  \left[\begin{array}{rrr|r}
+    1	& 0 	& 0 	& -1/3 \\
+    0	& 1 	& 0 	& 1 \\
+    0	& 0 	& 1 	& -1/2 
+  \end{array}\right]
+$\\
+De donde $\alpha_{3} = \frac{-1}{3} + x + \frac{-1}{2}x^{2}$\\
+
+Por lo que $B_{V}=\{\alpha_{1}=1 + x - \frac{3}{2}x^{2}, 
+					\alpha_{2}=-\frac{1}{6} + \frac{1}{2}x^{2}, 
+					\alpha_{3}=-\frac{1}{3} + x - \frac{1}{2}x^{2}\}$ 
+es la base de V correpondiente a la base $B_{V^{*}}$ de V*. 
+
+\end{proof}
+
+
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
