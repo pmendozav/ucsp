@@ -77,7 +77,7 @@ Curso: Matemática para la Computación} %if necessary, replace with your course
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
  
-\begin{problem}{1}
+\begin{problem}[Problema]{1}
 Sea $B = \begin{xmat}1 & -1\\0 & 1\end{xmat}$ y M el espacio lineal euclideo de matrices 2x2 con las operaciones habituales de adición de matrices y de multiplicación de un escalar por una matriz, con producto interior $<A,B> = Traz(AB^{'})$. Si $S=\{A \in M : AB = BA = 0\}$ es el subespacio lineal de M y $C=\begin{xmat}1 & -1\\1 & 0\end{xmat}$ una matriz en M. Hallar en S la matriz mas próxima a C.
 \end{problem}
  
@@ -162,9 +162,9 @@ s & = <C, \alpha_{1}>\alpha_{1} + <C, \alpha_{2}>\alpha_{2} + <C, \alpha_{3}>\al
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%PROBLEMA 02%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{problem}{2}
+\begin{problem}[Problema]{2}
 \end{problem}
-\begin{problem}{2.1}
+\begin{problem}[Problema]{2.a}
 Si V es un espacio vectorial sobre el cuerpo F. \\
 Si T es un operador lineal sobre V que cumple $T^{2}=0$. ¿Qué se puede decir de la relación que existe entre la imagen de T y el espacio nulo de T? Dar un ejemplo de un operador lineal T en $R^{2}$ tal que $T^{2}$=0 pero $T\neq0$.
 \end{problem}
@@ -174,7 +174,7 @@ Dado $x \in V \Longrightarrow T(x) \in Im(T)$ pero $T(T(x))= 0$ (por condición 
 Un ejemplo de esta transformación es el operador lineal T definido por $T\begin{xmat}x \\y\end{xmat} = \begin{xmat}0 & 1\\0 & 0\end{xmat}\begin{xmat}x \\y\end{xmat}$. Se tiene que $T=\begin{xmat}0 & 1\\0 & 0\end{xmat}$ y $T^{2}=\begin{xmat}0 & 1\\0 & 0\end{xmat}\begin{xmat}0 & 1\\0 & 0\end{xmat}=\begin{xmat}0 & 0\\0 & 0\end{xmat}$. Y además T es no nulo.
 \end{proof}
 
-\begin{problem}{2.2}
+\begin{problem}[Problema]{2.b}
 Si $V= R^{2}$, encontrar operadores T y U tales que $TU=0$ pero que $UT \neq 0$.
 \end{problem}
 
@@ -193,7 +193,7 @@ $TU=\begin{xmat}0 & 0\\0 & 1\end{xmat}\begin{xmat}0 & 1\\0 & 0\end{xmat}=
 	\begin{xmat}0 & 1\\0 & 0\end{xmat}$
 \end{proof}
 
-\begin{problem}{2.3}
+\begin{problem}[Problema]{2.c}
 Si $V=C$ (números complejos) y $F= R$ (los reales). Se define la función $V$ en el espacio de las matrices reales $2x2$ de la siguiente forma: Si $z= x + iy$, con $x$ e $y$ números reales, entonces \\
 $T(z)=\begin{xmat}x+7y & 5y\\-10y & x-7y\end{xmat}$\\
 i. Verificar que T es una transformación lineal inyectiva.\\
@@ -207,7 +207,7 @@ x\begin{xmat}1 & 0\\0 & 1\end{xmat} +
 y\begin{xmat}7 & 5\\-10 & -7\end{xmat}$. Con lo que $Im(T)=Span\{\begin{xmat}1 & 0\\0 & 1\end{xmat}, \begin{xmat}7 & 5\\-10 & -7\end{xmat}\}$
 \end{proof}
 
-\begin{problem}{2.4}
+\begin{problem}[Problema]{2.d}
 Si V es el espacio de todos los polinomios $p(x)$ reales de grado menor o igual a n. Si p pertenece a V,  $q=T(p)$ significa $q(x)=xp'(x)$ para todo x real. Pruebe que T es lineal, halle su núcleo, imagen, nulidad y rango de T.
 \end{problem}
 
@@ -243,11 +243,11 @@ Por lo anterior, se tiene que $p(x)=a_{0} \in Span\{1\} \Longrightarrow N(T)=Spa
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%PROBLEMA 03%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{problem}{3}
+\begin{problem}[Problema]{3}
 Sean V y W espacios vectoriales de dimensión finita sobre el cuerpo F.
 \end{problem}
 
-\begin{problem}{3.1}
+\begin{problem}[Problema]{3.a}
 Demostrar que V y W son isomorfos si y solo si dim V = dim W.
 \end{problem}
 
@@ -262,7 +262,7 @@ T es sobreyectivo: Para probar esto basta encontrar para cualquier $\beta \in W$
 Dado $\beta \in W$ este se puede representar como una combinación lineal de su base: $\beta = \sum_{i=1}^{n}a_{i}\beta_{i}=\sum_{i=1}^{n}a_{i}T(\alpha_{i})= T(\sum_{i=1}^{n}a_{i}\alpha_{i})=T(\alpha)$, donde $\alpha=\sum_{i=1}^{n}a_{i}\alpha_{i} \in V$ con lo que $W \subset Im(T)$. Por lo expuesto en lo anterior, T es sobreyectivo.
 \end{proof}
 
-\begin{problem}{3.2}
+\begin{problem}[Problema]{3.b}
 Si U es un isomorfismo de V sobre W. Demostrar que la correspondencia  $T \longrightarrow UTU^{-1}$  es un isomorfismo de L(V,V) sobre L(W,W).
 \end{problem}
 
@@ -295,11 +295,11 @@ Por lo anterior, $f$ es un isomorfismo.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{problem}{4}
+\begin{problem}[Problema]{4}
 Sea T el operador lineal sobre $R^{2}$ definido por  $T(x_{1},x_{2})=(-x_{2},x_{1})$.
 \end{problem}
 
-\begin{problem}{4.1}
+\begin{problem}[Problema]{4.a}
 Cuál es la matriz de T en la base canónica de $R_{2}$?
 \end{problem}
 
@@ -307,7 +307,7 @@ Cuál es la matriz de T en la base canónica de $R_{2}$?
 Sea $B=\{(1,0), (0,1)\}$ la base canónica de $R^{2} \Longrightarrow T(1,0)=(0,1)$ y $T(0,1)=(-1,0) \Longrightarrow A=\begin{xmat}0 & -1\\1 & 0\end{xmat}$ es la matriz de T en la base canónica.
 \end{proof} 
 
-\begin{problem}{4.2}
+\begin{problem}[Problema]{4.b}
 Cuál es la matriz en las base ordenada $B'=\{(1,2), (1,-1)\}$?
 \end{problem}
 
@@ -326,7 +326,7 @@ Sea sabe que: $[T]_{B'}=P^{-1}[T]_{B}P$ es la matriz de T en la base B', donde $
 Es la matriz asociada a T en la base $S=\{(1,2), (1,-1)\}$.
 \end{proof} 
 
-\begin{problem}{4.3}
+\begin{problem}[Problema]{4.c}
 Demostrar que para cada número real c el operador $(T - cI)$  es inversible.
 \end{problem}
 
@@ -334,7 +334,7 @@ Demostrar que para cada número real c el operador $(T - cI)$  es inversible.
 Dado $c \in R$. En la base canónica, $A=\begin{xmat}0 & -1\\1 & 0\end{xmat}$ es la matriz de T. La transformación $L=(T-cI)$ tiene como matriz asociada a $(A-cI)=\begin{xmat}-c & -1\\1 & -c\end{xmat}$ de donde $|A-cI|=c^{2}+1 \neq 0, \forall c \in R$ por lo que $L=(T-cI)$ es inversible.
 \end{proof} 
 
-\begin{problem}{4.4}
+\begin{problem}[Problema]{4.d}
 Demostrar que si S es cualquier base ordenada para $R_{2}$ y $[T]_{S} = A$, entonces $A_{12}A_{21} \neq 0$.
 \end{problem}
 
@@ -358,7 +358,7 @@ De ello se tiene que $A_{12}A_{21}=-\frac{(x_{2}^{2}+y_{2}^{2})(x_{1}^{2}+y_{1}^
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{problem}{5}
+\begin{problem}[Problema]{5}
 Sea V el espacio vectorial de todas las funciones polinómicas p de R en R, que tienen grado menor o igual a 2:  $p(x)= c_{0}+c_{1}x+c_{2}x^{2}$. Si se de finen tres funcionales lineales sobre V por $f_{1}=\int_{0}^{1}p(x)dx, f_{2}=\int_{0}^{2}p(x)dx, f_{3}=\int_{0}^{-1}p(x)dx$. \\
 Demostrar que $\{f_{1}, f_{2}, f_{3}\}$ es una base de V*, presentando la base de V de la cual ésta es dual.
 \end{problem}
