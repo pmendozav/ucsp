@@ -8,13 +8,17 @@
 #include <stdio.h>
 #include <type_traits>
 
-#include "helper_cuda.h"
 #include <cmath>
+
+//helper_cuda fue extraido desde "cuda samples"
+#include "helper_cuda.h"
 
 #define norm1(x, y) (sqrt(x*x + y*y))
 #define norm2(x, y) (fabs(x) + fabs(y))
 #define norm3(x, y) (atan(y/x))
 
+//estructura usada para guardar una matriz compatible con cuda
+//eval y h_eval son usadas dentro del filtrado
 template<class T>
 struct Mat
 {
@@ -86,6 +90,7 @@ struct Mat
 	}
 };
 
+//crea una matriz "2d" en el device de tamaño rows x cols e inicializa con src
 template<class T>
 static inline Mat<T> createDevMat2d(size_t rows, size_t cols, T *src)
 {
@@ -112,6 +117,7 @@ static inline Mat<T> createDevMat2d(size_t rows, size_t cols, T *src)
 	return dst;
 }
 
+//crea una matriz "2d" en el host de tamaño rows x cols e inicializa con src
 template<class T>
 static inline Mat<T> createHostMat2d(size_t rows, size_t cols, T *src)
 {
@@ -133,6 +139,7 @@ static inline Mat<T> createHostMat2d(size_t rows, size_t cols, T *src)
 	return dst;
 }
 
+//realiza la convolucion 2d en el device de img con el nucleo kernel y lo guarda en result
 template<class T>
 __global__ void conv2d2(Mat<T> img, Mat<T> kernel, T *result)
 {
@@ -152,6 +159,7 @@ __global__ void conv2d2(Mat<T> img, Mat<T> kernel, T *result)
 			result[tid_x * cols + tid_y] = img.eval(kernel, tid_x, tid_y, dh);
 }
 
+//realiza la convolucion 2d en el host de img con el nucleo kernel y lo guarda en result
 template<class T>
 static void cpu_conv2d2(Mat<T> img, Mat<T> kernel, T *result)
 {
@@ -168,6 +176,7 @@ static void cpu_conv2d2(Mat<T> img, Mat<T> kernel, T *result)
 			result[tid_x * cols + tid_y] = img.h_eval(kernel, tid_x, tid_y, dh);
 }
 
+//realiza el filtro de Sobel en el device de img usando gradiente=norm((Gx, Gy)) y lo guada en result
 template<class T>
 __global__ void sobelFilter(Mat<T> img, Mat<T> Gx, Mat<T> Gy, T *result)
 {
@@ -192,6 +201,7 @@ __global__ void sobelFilter(Mat<T> img, Mat<T> Gx, Mat<T> Gy, T *result)
 		}
 }
 
+//realiza el filtro de Sobel en el host de img usando gradiente=norm((Gx, Gy)) y lo guada en result
 template<class T>
 static void cpu_sobelFilter(Mat<T> img, Mat<T> Gx, Mat<T> Gy, T *result)
 {
@@ -213,6 +223,7 @@ static void cpu_sobelFilter(Mat<T> img, Mat<T> Gx, Mat<T> Gy, T *result)
 		}
 }
 
+//extrae el contenido de un cv::Mat_<T> a un puntero a T
 template<class T>
 static T *Mat2Pointer(cv::Mat img)
 {
@@ -222,6 +233,8 @@ static T *Mat2Pointer(cv::Mat img)
 	return ptr;
 }
 
+//copia el contenido de un puntero a T hacia cv::Mat_<T>
+//soporta float y uchar
 template<class T>
 static cv::Mat Pointer2Mat(T *ptr, size_t rows, size_t cols)
 {
@@ -239,9 +252,11 @@ static cv::Mat Pointer2Mat(T *ptr, size_t rows, size_t cols)
 
 typedef float type_ref;
 
+//define las especializaciones de conv2d2 y sobelFilter con type_ref
 template __global__ void conv2d2<type_ref>(Mat<type_ref> img, Mat<type_ref> kernel, type_ref *result);
 template __global__ void sobelFilter<type_ref>(Mat<type_ref> img, Mat<type_ref> Gx, Mat<type_ref> Gy, type_ref *result);
 
+//prueba de la derivada direcional en x e y y su conbinacion en el filtro de Sobel sobre el device
 static void test_gpu()
 {
 	//cudaEvent_t start, stop;
@@ -332,6 +347,7 @@ static void test_gpu()
 	imwrite("SobelFilter.jpg", in);
 }
 
+//prueba de la derivada direcional en x e y y su conbinacion en el filtro de Sobel sobre el host
 static void test_cpu()
 {
 	cv::Mat
