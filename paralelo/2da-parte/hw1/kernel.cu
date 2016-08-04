@@ -273,7 +273,7 @@ static void test_gpu()
 	Blocks = dim3(4, 4);
 	Threads = dim3(5, 5);
 
-	in = cv::imread("modelos.bmp", CV_LOAD_IMAGE_GRAYSCALE);
+	in = cv::imread("modelos.jpg", CV_LOAD_IMAGE_GRAYSCALE);
 	in.convertTo(in, CV_32FC1);
 
 	rows = in.rows;
@@ -303,7 +303,7 @@ static void test_gpu()
 
 	in = Pointer2Mat<type_ref>(h_result, in.rows, in.cols);
 	in.convertTo(in, CV_8UC1);
-	imwrite("Gx.tif", in);
+	imwrite("Gx.jpg", in);
 
 	//Gy
 	printf("Testing Gy-filter..\n");
@@ -319,7 +319,7 @@ static void test_gpu()
 
 	in = Pointer2Mat<type_ref>(h_result, in.rows, in.cols);
 	in.convertTo(in, CV_8UC1);
-	imwrite("Gy.tif", in);
+	imwrite("Gy.jpg", in);
 
 	//Sobel Filter
 	printf("Testing gradient..\n");
@@ -329,7 +329,7 @@ static void test_gpu()
 
 	in = Pointer2Mat<type_ref>(h_result, in.rows, in.cols);
 	in.convertTo(in, CV_8UC1);
-	imwrite("SobelFilter.tif", in);
+	imwrite("SobelFilter.jpg", in);
 }
 
 static void test_cpu()
@@ -357,7 +357,7 @@ static void test_cpu()
 	Blocks = dim3(4, 4);
 	Threads = dim3(5, 5);
 
-	in = cv::imread("modelos.bmp", CV_LOAD_IMAGE_GRAYSCALE);
+	in = cv::imread("modelos.jpg", CV_LOAD_IMAGE_GRAYSCALE);
 	in.convertTo(in, CV_32FC1);
 
 	rows = in.rows;
@@ -384,7 +384,7 @@ static void test_cpu()
 	
 	in = Pointer2Mat<type_ref>(h_result, in.rows, in.cols);
 	in.convertTo(in, CV_8UC1);
-	imwrite("Gx_cpu.tif", in);
+	imwrite("Gx_cpu.jpg", in);
 	//return;
 	//Gy
 	printf("Testing Gy-filter..\n");
@@ -393,7 +393,7 @@ static void test_cpu()
 
 	in = Pointer2Mat<type_ref>(h_result, in.rows, in.cols);
 	in.convertTo(in, CV_8UC1);
-	imwrite("Gy_cpu.tif", in);
+	imwrite("Gy_cpu.jpg", in);
 
 	//Sobel Filter
 	printf("Testing gradient..\n");
@@ -401,7 +401,7 @@ static void test_cpu()
 
 	in = Pointer2Mat<type_ref>(h_result, in.rows, in.cols);
 	in.convertTo(in, CV_8UC1);
-	imwrite("SobelFilter_cpu.tif", in);
+	imwrite("SobelFilter_cpu.jpg", in);
 }
 
 
