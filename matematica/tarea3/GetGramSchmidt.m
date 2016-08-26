@@ -10,7 +10,7 @@ function u = GetGramSchmidt(v)
         end
         disp(1);
     end
-    
+    % orthonormalization
     %for k=1:n
     %    u(:, 1) = u(:, 1) / norm(u(:, 1));
     %end

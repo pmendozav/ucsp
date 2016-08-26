@@ -25,5 +25,4 @@ function [P Q L U] = GaussianWithCompletePivot(A)
     end
     U = A;
     L = P*(inv(M));
-    disp(1);
 end
