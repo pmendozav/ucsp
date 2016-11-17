@@ -5,7 +5,6 @@ function out = Predict(X, classifier)
     tags_x = classifier.tags_x;
 
     [N, dim] = size(X);
-
     for l=1:N
         x = X(l,:);
         clear x2
@@ -19,7 +18,6 @@ function out = Predict(X, classifier)
         for j=1:size(tags_c, 1)
             pc = p_c(j);
             pxc = 1;
-            
             for r=1:dim
                 pxc = pxc * p_xc{r}{j}{x2(r)};
             end
