@@ -1,0 +1,45 @@
+*****************************************************
+*****************************************************
+PRUEBA 0: (usando el ejemplo del link de la diapositiva)
+-La matriz de confusion muestra un error en los datos de prueba.
+-Usando el dato de prueba, sale el valor correcto.
+<<
+Usando todos los datos:
+
+confusionmat_ =
+
+     4     1
+     0     9
+
+Usando los datos de prueba:
+
+ans = 
+
+    'No'
+>>
+
+*****************************************************
+*****************************************************
+PRUEBA 1: (usando car-data, car-prueba)
+-Errores según matriz de confusion usando los mismos datos de entrenamiento: (c1, c2, c3, c4) = (47+2, 289+10, 26, 46+2). 
+Donde ci: clase i. Clases: 'unacc', 'acc', 'vgood', 'good'
+-Resultados con los 4 datos de prueba son: ['unacc', 'good', 'unacc', 'unacc']
+<<
+Usando todos los datos:
+
+confusionmat_ =
+
+        1158          47           0           2
+          85         289           0          10
+           0          26          39           0
+           0          46           2          20
+
+Usando los datos de prueba:
+
+ans = 
+
+    'unacc'
+    'good'
+    'unacc'
+    'unacc'
+>>
