@@ -32,19 +32,3 @@ function out = Predict(X, classifier)
         out{l} = tags_c{pos};
     end
 end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
