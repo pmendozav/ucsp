@@ -1,0 +1,119 @@
+-Primera parte:
+Se realizaron las modificaciones de la red en 'Credit_net.net'
+
+-Segunda parte:
+Se realizaron 2 pruebas:
+A) Pruebas unitarias (testing_functions.m): Esta basado en los factores de FactorTutorial.m
+B) Pruebas usando 'Credit_net.net' (testing_samiam.m): Se realizaron 2 tipos de pruebas para ver la prob. marginal 
+de 'CreditWorthiness': Primero sin modificar la red, y luego fijando Reliability=Unreliable y FutureIncome=Not_promising.
+
+---------------------
+
+A) Resultados de Pruebas unitarias: testing_functions.m
+****Factor Product:
+
+result = 
+
+     var: [1 2]
+    card: [2 2]
+     val: [0.0649 0.1958 0.0451 0.6942]
+Reference = 
+
+     var: [1 2]
+    card: [2 2]
+     val: [0.0649 0.1958 0.0451 0.6942]
+
+*******************
+****Factor Marginalization:
+result = 
+
+     var: 1
+    card: 2
+     val: [1 1]
+Reference = 
+
+     var: 1
+    card: 2
+     val: [1 1]
+
+*******************
+****Observe Evidence:
+Result(1):
+     var: 1
+    card: 2
+     val: [0.1100 0.8900]
+Reference(1):
+     var: 1
+    card: 2
+     val: [0.1100 0.8900]
+Result(2):
+     var: [2 1]
+    card: [2 2]
+     val: [0.5900 0 0.2200 0]
+Reference(2):
+     var: [2 1]
+    card: [2 2]
+     val: [0.5900 0 0.2200 0]
+Result(3):
+     var: [3 2]
+    card: [2 2]
+     val: [0 0.6100 0 0]
+Reference(3):
+     var: [3 2]
+    card: [2 2]
+     val: [0 0.6100 0 0]
+
+*******************
+****Observe Evidence:
+result = 
+     var: [1 2 3]
+    card: [2 2 2]
+     val: [1x8 double]
+Reference = 
+
+     var: [1 2 3]
+    card: [2 2 2]
+     val: [1x8 double]
+result_val =
+    0.0253    0.0764    0.0027    0.0417    0.0396    0.1194    0.0424    0.6525
+reference_val =
+    0.0253    0.0764    0.0027    0.0417    0.0396    0.1194    0.0424    0.6525
+
+*******************
+****Observe Evidence:
+result = 
+     var: [2 3]
+    card: [2 2]
+     val: [0.0858 0.0468 0.1342 0.7332]
+Reference = 
+     var: [2 3]
+    card: [2 2]
+     val: [0.0858 0.0468 0.1342 0.7332]
+*******************
+>> 
+
+---------------------
+
+B) Resultados de 'Credit_net.net' (testing_samiam.m):
+****Sin fijar nada:
+result = 
+     var: 1
+    card: 2
+     val: [0.2685 0.7315]
+Reference = 
+     var: 1
+    card: 2
+     val: [0.2685 0.7315]
+
+*******************
+****Fijando Reliability=Unreliable y FutureIncome=Not_promising:
+result = 
+     var: 1
+    card: 2
+     val: [0.0644 0.9356]
+Reference = 
+     var: 1
+    card: 2
+     val: [0.0644 0.9356]
+*******************
+>> 
