@@ -1,11 +1,11 @@
--Primera parte:
+-PRIMERA parte:
 Se realizaron las modificaciones de la red en 'Credit_net.net'
 
--Segunda parte:
+-Segunda y Tercera parte:
 Se realizaron 2 pruebas:
-A) Pruebas unitarias (testing_functions.m): Esta basado en los factores de FactorTutorial.m
-B) Pruebas usando 'Credit_net.net' (testing_samiam.m): Se realizaron 2 tipos de pruebas para ver la prob. marginal 
-de 'CreditWorthiness': Primero sin modificar la red, y luego fijando Reliability=Unreliable y FutureIncome=Not_promising.
+A) Pruebas unitarias (SEGUNDA Parte, testing_functions.m): Esta basado en los factores de FactorTutorial.m
+B) Pruebas usando 'Credit_net.net' (TERCERA Parte, testing_samiam.m): Se realizaron 2 tipos de pruebas para ver la prob. marginal 
+de 'CreditWorthiness': Primero sin modificar la red, y luego fijando Reliability=Unreliable y FutureIncome=Not_promising. 
 
 ---------------------
 
