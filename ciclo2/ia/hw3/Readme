@@ -1,0 +1,26 @@
+i) RESULTADOS OBTENIDOS
+Los resultados obtenidos en cada parte estan acorde con los pedidos en los requerimientos.
+-PARTE 1:
+         precision      recall          F1-Score
+GENE:    0.158861       0.660436        0.256116
+-PARTE 2:
+         precision      recall          F1-Score
+GENE:    0.541555       0.314642        0.398030
+-PARTE 3:
+         precision      recall          F1-Score
+GENE:    0.534940       0.345794        0.420057
+
+ii) DETALLES DE IMPLEMENTACIÓN
+En todas las partes se usan las funciones de helper.h
+
+-PARTE 1: SimpleTagger.h (clase SimpleTagger). Se tiene que descomentar la linea 193 de source.cpp. Si los archivos "gene_p1.train" y "gene_p1.count" no existen, debe descomentarse la linea 192 para generarlos.
+-PARTE 2: Viterbi.h (clase _Viterbi).  Se tiene que descomentar la linea 196 de source.cpp. Se considera que se existe "gene_p1.count" de la parte 1
+-PARTE 3: ViterbiV2.h (clase _ViterbiV2). Se tiene que descomentar la linea 200 de source.cpp. Si los archivos "gene_p3.train" y "gene_p3.count" no existen, debe descomentarse la linea 199 para generarlos.
+
+iii) DESCRIPCION DE RESULTADOS
+-PARTE 1: la funcion _replace_parte_1 genera los archivos "gene_p1.train", "gene_p1.count" necesarios en la funcion _parte_1. El resultado de esta parte esta en  result_part_1.txt
+-PARTE 2: El resultado de esta parte esta en  result_part_2.txt
+-PARTE 3: la funcion _replace_parte_3 genera los archivos "gene_p3.train", "gene_p3.count" necesarios en la funcion _parte_3. El resultado de esta parte esta en  result_part_3.txt
+
+iv) OBSERVACIONES
+Una vez generados los archivos "gene_p<1,3>.train" y "gene_p<1,3>.count" no es necesario volver a ejecutar esta parte por lo que se pueden comentar
