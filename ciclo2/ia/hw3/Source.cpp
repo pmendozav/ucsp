@@ -10,9 +10,6 @@
 using namespace std;
 
 #include "helper.h"
-#include "modificar_data_de_entrenamiento.h"
-#include "parameters.h"
-#include "partes.h"
 
 #include "Viterbi.h"
 #include "ViterbiV2.h"
