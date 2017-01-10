@@ -1,0 +1,133 @@
+-PARTE DE TENSORFLOW: Se modifico el archivo de entrenamiento colocando las etiquetas de los 
+campos al inicio del archivo:
+"buying,maint,doors,persons,lug_boot,safety,class
+vhigh,vhigh,2,2,small,low,unacc
+vhigh,vhigh,2,2,small,med,unacc
+vhigh,vhigh,2,2,small,high,unacc
+..."
+*Se coloco en car_test.data los datos de prueba (presumiendo
+que las clases obtenidas con el clasificador de Bayes fueron
+las correctas con el fin de comparar el mismo resultado):
+"buying,maint,doors,persons,lug_boot,safety,class
+low,low,4,2,big,high,unacc
+low,low,5more,4,med,med,good
+low,low,5more,more,big,low,unacc
+high,vhigh,3,4,big,med,unacc"
+*Se entreno la NN con solo una capa intermedia de 10 neuronas
+y 1000 iteraciones.
+*La precision obtenida fue de 1 (i.e. con los 4 datos de prueba se obtuvo el mismo resultado que
+Bayes como se esperaba)
+
+
+-PARTE DE MATLAB: Se obtuvo una precision de 95.060000%, el cual esta dentro de lo aceptado (95.3%).
+Las pruebas unitarias fueron pasados y los resultados obtenidos fueron:
+
+"
+Loading and Visualizing Data ...
+Program paused. Press enter to continue.
+
+Loading Saved Neural Network Parameters ...
+
+Feedforward Using Neural Network ...
+Cost at parameters (loaded from ex4weights): 0.287629 
+(this value should be about 0.287629)
+
+Program paused. Press enter to continue.
+
+Checking Cost Function (w/ Regularization) ... 
+Cost at parameters (loaded from ex4weights): 0.383770 
+(this value should be about 0.383770)
+Program paused. Press enter to continue.
+
+Evaluating sigmoid gradient...
+Sigmoid gradient evaluated at [-1 -0.5 0 0.5 1]:
+  0.196612 0.235004 0.250000 0.235004 0.196612 
+
+Program paused. Press enter to continue.
+
+Initializing Neural Network Parameters ...
+
+Checking Backpropagation... 
+   -0.0093   -0.0093
+    0.0089    0.0089
+   -0.0084   -0.0084
+    0.0076    0.0076
+   -0.0067   -0.0067
+   -0.0000   -0.0000
+    0.0000    0.0000
+   -0.0000   -0.0000
+    0.0000    0.0000
+   -0.0000   -0.0000
+   -0.0002   -0.0002
+    0.0002    0.0002
+   -0.0003   -0.0003
+    0.0003    0.0003
+   -0.0004   -0.0004
+   -0.0001   -0.0001
+    0.0001    0.0001
+   -0.0001   -0.0001
+    0.0002    0.0002
+   -0.0002   -0.0002
+    0.3145    0.3145
+    0.1111    0.1111
+    0.0974    0.0974
+    0.1641    0.1641
+    0.0576    0.0576
+    0.0505    0.0505
+    0.1646    0.1646
+    0.0578    0.0578
+    0.0508    0.0508
+    0.1583    0.1583
+    0.0559    0.0559
+    0.0492    0.0492
+    0.1511    0.1511
+    0.0537    0.0537
+    0.0471    0.0471
+    0.1496    0.1496
+    0.0532    0.0532
+    0.0466    0.0466
+
+The above two columns you get should be very similar.
+(Left-Your Numerical Gradient, Right-Analytical Gradient)
+
+If your backpropagation implementation is correct, then 
+the relative difference will be small (less than 1e-9). 
+
+Relative Difference: 2.2366e-11
+
+
+Cost at (fixed) debugging parameters (w/ lambda = 3.000000): 0.576051 
+(for lambda = 3, this value should be about 0.576051)
+
+Program paused. Press enter to continue.
+
+Training Neural Network... 
+Iteration     1 | Cost: 3.312223e+00
+Iteration     2 | Cost: 3.248407e+00
+Iteration     3 | Cost: 3.224486e+00
+...
+Iteration    44 | Cost: 5.498701e-01
+Iteration    45 | Cost: 5.471510e-01
+Iteration    46 | Cost: 5.460826e-01
+Iteration    47 | Cost: 5.433085e-01
+Iteration    48 | Cost: 5.414786e-01
+Iteration    49 | Cost: 5.393262e-01
+Iteration    50 | Cost: 5.325793e-01
+
+Program paused. Press enter to continue.
+
+Visualizing Neural Network... 
+
+Program paused. Press enter to continue.
+
+Training Set Accuracy: 95.060000
+"
+
+
+
+
+
+
+
+
+
