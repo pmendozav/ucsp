@@ -12,5 +12,8 @@ capa 5: softmax
 Batch de entrenamiento=64
 Batch de clasificacion=256
 
-DETALLES DE IMPLEMENTACION: Se implementó una clase CNN_class para configurar una CNN generica de forma sencilla, pudiendose agrega y modificar capas con una sola linea de codigo.
+DETALLES DE IMPLEMENTACION:
+Se implementó una clase CNN_class para configurar una CNN generica de forma sencilla, pudiendose agrega y modificar capas con una sola linea de codigo.
 
+OTROS DETALLES:
+la carpeta checkpoints guarda los resultados del entrenamiento. Puede ser colocado junto al source para volver a cargar el ultimo estado de la red
