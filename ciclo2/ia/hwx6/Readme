@@ -1,0 +1,16 @@
+-RESULTADOS:
+Iteraciones: 750k
+Precisión: 80.1%
+
+-DETALLES DE RED:
+capa 1: convolucion. Detalles: 64 filtros de tamaño 5x5 sin stride con normalizacion.
+capa 2: convolucion. Detalles: 64 filtros de tamaño 5x5 sin stride sin normalizacion.
+capa 3: NN. Detalles: 256 neuronas.
+capa 4: NN. Detalles: (numero_de_clases) neuronas.
+capa 5: softmax
+
+Batch de entrenamiento=64
+Batch de clasificacion=256
+
+DETALLES DE IMPLEMENTACION: Se implementó una clase CNN_class para configurar una CNN generica de forma sencilla, pudiendose agrega y modificar capas con una sola linea de codigo.
+
